@@ -1,0 +1,57 @@
+.users-page{
+    padding:30px;
+    background:#f4f0fb;
+    min-height:100vh;
+}
+
+.users-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.users-header h1{
+    margin:0;
+    color:#24143d;
+}
+
+.users-header p{
+    color:#8b7fa8;
+    margin-top:6px;
+}
+
+.add-user-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    background:#9333ea;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    padding:12px 20px;
+
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.add-user-btn:hover{
+    background:#7e22ce;
+}
+
+.add-user-btn svg{
+    width:18px;
+    height:18px;
+}
+
+.users-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
