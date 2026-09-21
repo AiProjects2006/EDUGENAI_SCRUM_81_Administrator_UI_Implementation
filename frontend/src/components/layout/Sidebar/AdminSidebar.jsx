@@ -69,7 +69,7 @@ function Sidebar() {
                             }
                         >
                             <BookOpen size={20} />
-                            <span>Course Management</span>
+                            <span>Course Administration</span>
                         </NavLink>
                     </li>
 
