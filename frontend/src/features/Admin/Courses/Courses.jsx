@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Courses.css";
+
 import CourseModal from "./CourseModal/CourseModal";
 import CoursePagination from "./CoursePagination/CoursePagination";
-
 import Sidebar from "../../../components/layout/Sidebar/AdminSidebar";
 import CourseStats from "./CourseStats";
 import CourseTable from "./CourseTable";
