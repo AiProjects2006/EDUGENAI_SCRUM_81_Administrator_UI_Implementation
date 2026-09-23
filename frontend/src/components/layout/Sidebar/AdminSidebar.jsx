@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { GraduationCap } from "lucide-react";
 import profile from "../../../assets/profile.jpg";
 import {
+    GraduationCap,
     LayoutDashboard,
     Users,
     BookOpen,
@@ -9,7 +9,8 @@ import {
     ClipboardList,
     BarChart3,
     Settings,
-    LogOut
+    LogOut,
+    ShieldCheck
 
 } from "lucide-react";
 
@@ -70,6 +71,18 @@ function Sidebar() {
                         >
                             <BookOpen size={20} />
                             <span>Course Administration</span>
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink
+                            to="/content-moderation"
+                            className={({ isActive }) =>
+                                isActive ? "active" : ""
+                            }
+                        >
+                            <ShieldCheck size={20} />
+                            <span>Content Moderation</span>
                         </NavLink>
                     </li>
 

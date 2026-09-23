@@ -1,0 +1,206 @@
+.reject-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(20, 10, 30, 0.45);
+    overflow-y: auto;
+}
+
+.reject-modal {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(30, 15, 40, 0.18);
+}
+
+.reject-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 18px;
+    border-bottom: 1px solid #eee5f5;
+}
+
+.reject-modal-title-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.reject-warning-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: #fcecef;
+    color: #c93669;
+}
+
+.reject-modal-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #9a8fa1;
+    text-transform: uppercase;
+}
+
+.reject-modal-header h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #291537;
+}
+
+.reject-close-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    background: #f6f2f8;
+    color: #6f6275;
+    cursor: pointer;
+}
+
+.reject-close-btn:hover {
+    background: #eee7f1;
+}
+
+.reject-modal-body {
+    padding: 18px;
+}
+
+.reject-content-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    padding: 12px;
+    border: 1px solid #eee5f5;
+    border-radius: 7px;
+    background: #faf8fc;
+}
+
+.reject-content-info span {
+    margin-bottom: 5px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #9a8fa1;
+    text-transform: uppercase;
+}
+
+.reject-content-info strong {
+    font-size: 11px;
+    color: #392946;
+}
+
+.reject-content-info small {
+    margin-top: 4px;
+    font-size: 9px;
+    color: #968a9c;
+}
+
+.reject-reason-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #8b8091;
+    text-transform: uppercase;
+}
+
+.reject-reason-group textarea {
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #e3dce8;
+    border-radius: 6px;
+    background: white;
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #403448;
+    resize: vertical;
+    outline: none;
+}
+
+.reject-reason-group textarea:focus {
+    border-color: #c93669;
+}
+
+.reject-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 14px 18px;
+    border-top: 1px solid #eee5f5;
+    background: #fcfbfd;
+}
+
+.reject-cancel-btn,
+.reject-submit-btn {
+    min-height: 34px;
+    padding: 0 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.reject-cancel-btn {
+    background: #f1edf3;
+    color: #625569;
+}
+
+.reject-cancel-btn:hover {
+    background: #e8e2eb;
+}
+
+.reject-submit-btn {
+    background: #fcecef;
+    color: #c93669;
+}
+
+.reject-submit-btn:hover:not(:disabled) {
+    background: #f8dfe7;
+}
+
+.reject-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+
+    .reject-modal-overlay {
+        padding: 12px;
+    }
+
+    .reject-modal-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .reject-cancel-btn,
+    .reject-submit-btn {
+        width: 100%;
+    }
+}

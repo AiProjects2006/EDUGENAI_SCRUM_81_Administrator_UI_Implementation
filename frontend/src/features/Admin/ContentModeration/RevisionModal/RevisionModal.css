@@ -1,0 +1,192 @@
+.revision-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(20, 10, 30, 0.45);
+    overflow-y: auto;
+}
+
+.revision-modal {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(30, 15, 40, 0.18);
+}
+
+.revision-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 18px;
+    border-bottom: 1px solid #eee5f5;
+}
+
+.revision-modal-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #9a8fa1;
+    text-transform: uppercase;
+}
+
+.revision-modal-header h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #291537;
+}
+
+.revision-close-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    background: #f6f2f8;
+    color: #6f6275;
+    cursor: pointer;
+}
+
+.revision-close-btn:hover {
+    background: #eee7f1;
+}
+
+.revision-modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.revision-modal-body {
+    padding: 18px;
+}
+
+.revision-content-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    padding: 12px;
+    border: 1px solid #eee5f5;
+    border-radius: 7px;
+    background: #faf8fc;
+}
+
+.revision-content-info span {
+    margin-bottom: 5px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #9a8fa1;
+    text-transform: uppercase;
+}
+
+.revision-content-info strong {
+    font-size: 11px;
+    color: #392946;
+}
+
+.revision-content-info small {
+    margin-top: 4px;
+    font-size: 9px;
+    color: #968a9c;
+}
+
+.revision-note-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #8b8091;
+    text-transform: uppercase;
+}
+
+.revision-note-group textarea {
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #e3dce8;
+    border-radius: 6px;
+    background: white;
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #403448;
+    resize: vertical;
+    outline: none;
+}
+
+.revision-note-group textarea:focus {
+    border-color: #8b35d6;
+}
+
+.revision-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 14px 18px;
+    border-top: 1px solid #eee5f5;
+    background: #fcfbfd;
+}
+
+.revision-cancel-btn,
+.revision-submit-btn {
+    min-height: 34px;
+    padding: 0 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.revision-cancel-btn {
+    background: #f1edf3;
+    color: #625569;
+}
+
+.revision-cancel-btn:hover {
+    background: #e8e2eb;
+}
+
+.revision-submit-btn {
+    background: #eee9ff;
+    color: #6355c7;
+}
+
+.revision-submit-btn:hover:not(:disabled) {
+    background: #e3ddfb;
+}
+
+.revision-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+    .revision-modal-overlay {
+        padding: 12px;
+    }
+
+    .revision-modal-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .revision-cancel-btn,
+    .revision-submit-btn {
+        width: 100%;
+    }
+}

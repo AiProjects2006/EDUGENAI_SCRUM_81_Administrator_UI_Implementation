@@ -1,7 +1,4 @@
-import {
-    Search,
-    RotateCcw
-} from "lucide-react";
+import {Search, RotateCcw } from "lucide-react";
 
 import "./CourseFilters.css";
 

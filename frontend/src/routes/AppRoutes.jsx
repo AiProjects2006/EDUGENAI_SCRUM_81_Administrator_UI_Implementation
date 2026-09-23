@@ -7,6 +7,7 @@ import Activities from "../features/Admin/Activities/Activities";
 import Progress from "../features/Admin/Progress/Progress";
 import Settings from "../features/Admin/Settings/Settings";
 import BackofficeLayout from "../components/layout/BackofficeLayout";
+import ContentModeration from "../features/Admin/ContentModeration/ContentModeration";
 
 function AppRoutes() {
     return (
@@ -17,6 +18,8 @@ function AppRoutes() {
             <Route path="/users" element={<Users />} />
 
             <Route path="/courses" element={<Courses />} />
+
+            <Route path="/content-moderation" element={<ContentModeration />}/>
 
             <Route path="/activities" element={<Activities />} />
 

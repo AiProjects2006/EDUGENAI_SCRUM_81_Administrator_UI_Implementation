@@ -1,0 +1,129 @@
+.moderation-table-wrapper {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #eee5f5;
+    border-radius: 7px;
+}
+
+.moderation-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.moderation-table th {
+    padding: 15px 12px;
+    text-align: left;
+    background: #faf8fc;
+    border-bottom: 1px solid #eee5f5;
+    font-size: 13px;
+    font-weight: 600;
+    color: #8b8091;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.moderation-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0ebf3;
+    font-size: 13px;
+    color: #514657;
+    vertical-align: middle;
+}
+
+.moderation-table tbody tr {
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.moderation-table tbody tr:hover {
+    background: #faf7fc;
+}
+
+.moderation-table tbody tr.selected-row {
+    background: #f8f0fc;
+}
+
+.content-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2b1938;
+    margin-bottom: 4px;
+}
+
+.content-id {
+    font-size: 12px;
+    color: #9a8fa1;
+}
+
+.content-type {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.content-type.ai-type {
+    background: #eee9ff;
+    color: #6355c7;
+}
+
+.content-type.uploaded-type {
+    background: #eaf5ff;
+    color: #3975aa;
+}
+
+.moderation-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.moderation-status.pending {
+    background: #fff4dc;
+    color: #b77900;
+}
+
+.moderation-status.approved {
+    background: #e7f8ee;
+    color: #24935b;
+}
+
+.moderation-status.rejected {
+    background: #fcecef;
+    color: #c93669;
+}
+
+.view-content-btn {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e4dce9;
+    border-radius: 5px;
+    background: white;
+    color: #6f527d;
+    cursor: pointer;
+}
+
+.view-content-btn:hover {
+    background: #f4ebf8;
+    color: #7b159f;
+}
+
+.no-content {
+    padding: 30px !important;
+    text-align: center;
+    color: #968a9c !important;
+}
