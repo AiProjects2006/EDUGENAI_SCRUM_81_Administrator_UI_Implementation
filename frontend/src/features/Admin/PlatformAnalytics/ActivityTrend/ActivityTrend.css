@@ -1,0 +1,133 @@
+.activity-trend-panel {
+    min-height: 280px;
+    background: #ffffff;
+    border: 1px solid #eee5f5;
+    border-radius: 9px;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.activity-trend-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.activity-trend-header h2 {
+    margin: 0;
+    color: #211033;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.activity-trend-header p {
+    margin: 5px 0 0;
+    color: #897f90;
+    font-size: 14px;
+}
+
+.activity-trend-legend {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #897f90;
+    font-size: 12px;
+}
+
+.activity-trend-legend span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.trend-legend-dot {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.trend-legend-dot.active {
+    background: #9a38d1;
+}
+
+.trend-legend-dot.unique {
+    background: #d9c9e1;
+}
+
+.activity-chart {
+    display: flex;
+    height: 215px;
+    margin-top: 18px;
+}
+
+.chart-y-axis {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 22px;
+    color: #a49aa8;
+    font-size: 11px;
+    box-sizing: border-box;
+}
+
+.chart-area {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.chart-grid-lines {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 22px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart-grid-lines span {
+    width: 100%;
+    border-top: 1px dashed #eee7f2;
+}
+
+.activity-line-chart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 22px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 22px);
+    color: #9a38d1;
+    overflow: visible;
+}
+
+.chart-x-axis {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    color: #a49aa8;
+    font-size: 11px;
+}
+
+@media (max-width: 600px) {
+    .activity-trend-panel {
+        padding: 12px;
+    }
+
+    .activity-trend-header {
+        flex-direction: column;
+    }
+
+    .activity-trend-legend {
+        margin-top: 5px;
+    }
+}

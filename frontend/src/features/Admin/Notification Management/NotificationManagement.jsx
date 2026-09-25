@@ -1,11 +1,11 @@
 import BackofficeLayout from "../../../components/layout/BackofficeLayout.jsx";
 
-function Activities() {
+function NotificationManagement() {
     return (
         <BackofficeLayout>
-            <h1>Activities</h1>
+            <h1>Progress Tracking</h1>
         </BackofficeLayout>
     );
 }
 
-export default Activities;
+export default Progress;

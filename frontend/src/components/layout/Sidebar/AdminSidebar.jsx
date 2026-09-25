@@ -88,13 +88,13 @@ function Sidebar() {
 
                     <li>
                         <NavLink
-                            to="/activities"
+                            to="/platform-analytics"
                             className={({ isActive }) =>
                                 isActive ? "active" : ""
                             }
                         >
-                            <ClipboardList size={20} />
-                            <span>Activities</span>
+                            <BarChart3 size={20} />
+                            <span>Platform Analytics</span>
                         </NavLink>
                     </li>
 

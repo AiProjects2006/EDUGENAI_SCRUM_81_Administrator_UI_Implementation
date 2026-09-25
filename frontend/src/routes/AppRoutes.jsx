@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from "../features/Admin/Dashboard/Dashboard.jsx";
 import Users from "../features/Admin/UserManagement/Users.jsx";
 import Courses from "../features/Admin/Courses/Courses.jsx";
-import Activities from "../features/Admin/Activities/Activities";
+import PlatformAnalytics from "../features/Admin/PlatformAnalytics/PlatformAnalytics";
 import Progress from "../features/Admin/Progress/Progress";
 import Settings from "../features/Admin/Settings/Settings";
 import BackofficeLayout from "../components/layout/BackofficeLayout";
@@ -21,7 +21,7 @@ function AppRoutes() {
 
             <Route path="/content-moderation" element={<ContentModeration />}/>
 
-            <Route path="/activities" element={<Activities />} />
+            <Route path="/platform-analytics" element={<PlatformAnalytics />} />
 
             <Route path="/progress" element={<Progress />} />
 
