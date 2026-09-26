@@ -1,0 +1,179 @@
+.settings-preferences-card {
+    width: 100%;
+    min-height: 171px;
+    padding: 14px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #eee3f2;
+    border-radius: 7px;
+}
+
+.preferences-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.preferences-header p {
+    margin: 3px 0 0;
+    color: #9a8da0;
+    font-size: 13px;
+}
+
+.preferences-icon {
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #f5eafa;
+    color: #72008c;
+}
+
+.preferences-header h2 {
+    margin: 0;
+    color: #32163b;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.preferences-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #75677a;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.preferences-theme-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    position: relative;
+    transition:
+            border-color 0.15s ease,
+            background 0.15s ease,
+            transform 0.15s ease;
+}
+
+.preferences-theme-option {
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: 1px solid #eee3f2;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #67576d;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.preferences-theme-option:hover {
+    border-color: #cba5d4;
+    background: #fdfaff;
+}
+
+.preferences-theme-option.active {
+    border-color: #72008c;
+    background: #f8eafd;
+    color: #72008c;
+}
+
+.preferences-theme-option.active svg {
+    color: #72008c;
+}
+
+.preferences-theme-check {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.preferences-label.notifications {
+    margin-top: 13px;
+}
+
+.preferences-notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.preferences-notification-row {
+    position: relative;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f4eef5;
+    color: #67576d;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.preferences-notification-row:last-child {
+    border-bottom: none;
+}
+
+.preferences-notification-row:hover {
+    color: #72008c;
+}
+
+.preferences-notification-row input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preferences-checkbox {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid #e1d6e4;
+    border-radius: 3px;
+    background: #ffffff;
+    color: #ffffff;
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.preferences-checkbox.checked {
+    border-color: #72008c;
+    background: #72008c;
+}
+
+.preferences-notification-row input:checked + .preferences-checkbox {
+    border-color: #72008c;
+    background: #72008c;
+}
+
+.preferences-saved {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 0;
+    overflow: hidden;
+    color: #31915a;
+    font-size: 8px;
+    font-weight: 600;
+    opacity: 0;
+    transition:
+            height 0.2s ease,
+            opacity 0.2s ease;
+}
+
+.preferences-saved.visible {
+    height: 17px;
+    opacity: 1;
+}
