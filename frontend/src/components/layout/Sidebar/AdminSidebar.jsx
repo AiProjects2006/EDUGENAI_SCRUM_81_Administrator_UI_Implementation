@@ -8,6 +8,7 @@ import {
     PenSquare,
     ClipboardList,
     BarChart3,
+    Bell,
     Settings,
     LogOut,
     ShieldCheck
@@ -100,13 +101,13 @@ function Sidebar() {
 
                     <li>
                         <NavLink
-                            to="/progress"
+                            to="/notification-management"
                             className={({ isActive }) =>
                                 isActive ? "active" : ""
                             }
                         >
-                            <BarChart3 size={20} />
-                            <span>Progress Tracking</span>
+                            <Bell size={20} />
+                            <span>Notifications</span>
                         </NavLink>
                     </li>
 

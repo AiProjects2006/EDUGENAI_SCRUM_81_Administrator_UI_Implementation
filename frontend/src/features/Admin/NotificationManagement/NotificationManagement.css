@@ -1,0 +1,140 @@
+.notification-management {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 38px 38px 30px;
+    background: #fbf0ff;
+    color: #32163b;
+    font-size: 14px;
+}
+
+.notification-page-header {
+    display: flex;
+    align-items: flex-startn;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.notification-page-header h1 {
+    margin: 0;
+    color: #241329;
+    font-size: 30px;
+    line-height: 1.15;
+    font-weight: 750;
+}
+
+.notification-page-header p {
+    margin: 5px 0 0;
+    color: #8d8192;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.notification-page-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.notification-export-btn,
+.notification-broadcast-btn {
+    height: 27px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.notification-export-btn {
+    border: 1px solid #ead6f0;
+    background: #f4e6fa;
+    color: #72008c;
+}
+
+.notification-broadcast-btn {
+    border: 1px solid #72008c;
+    background: #72008c;
+    color: #ffffff;
+}
+
+.notification-export-btn:hover {
+    background: #efdef7;
+}
+
+.notification-broadcast-btn:hover {
+    background: #620078;
+}
+
+.notification-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 520px;
+    gap: 16px;
+    margin-top: 14px;
+    align-items: start;
+}
+
+.notification-left-column,
+.notification-right-column {
+    min-width: 0;
+}
+
+.notification-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.notification-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 520px;
+}
+
+.notification-log-section {
+    margin-top: 14px;
+}
+
+@media (max-width: 1100px) {
+    .notification-main-grid {
+        grid-template-columns: minmax(0, 1fr) 280px;
+    }
+
+    .notification-right-column {
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 850px) {
+    .notification-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-right-column {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .notification-management {
+        padding: 14px;
+    }
+
+    .notification-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-right-column {
+        grid-template-columns: 1fr;
+    }
+}

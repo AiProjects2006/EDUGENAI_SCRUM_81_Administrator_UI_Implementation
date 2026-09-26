@@ -1,0 +1,128 @@
+.system-health-card {
+    width: 100%;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #eee3f2;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.system-health-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.system-health-header h2 {
+    margin: 0;
+    color: #32163b;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+.system-health-header p {
+    margin: 4px 0 0;
+    color: #9a8da0;
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.system-health-overall {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background: #f0faf3;
+    color: #31915a;
+    font-size: 11px;
+    font-weight: 550;
+    white-space: nowrap;
+}
+
+.system-health-overall-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #38a866;
+}
+
+.system-health-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.system-health-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 50px;
+    padding: 8px 0;
+    border-top: 1px solid #f0e9f3;
+    box-sizing: border-box;
+}
+
+.system-health-item:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.system-health-item:last-child {
+    padding-bottom: 0;
+}
+
+.system-health-service-icon {
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #f5eafa;
+    color: #72008c;
+}
+
+.system-health-info {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.system-health-info strong {
+    color: #403343;
+    font-size: 14px;
+    font-weight: 550;
+    line-height: 1.2;
+}
+
+.system-health-info span {
+    color: #9a8da0;
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.system-health-status {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+    color: #32915a;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .system-health-header {
+        flex-direction: column;
+    }
+
+    .system-health-overall {
+        align-self: flex-start;
+    }
+}
