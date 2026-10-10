@@ -1,0 +1,33 @@
+.user-stat-card{
+    background:#fff;
+    border-radius:14px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.user-stat-info p{
+    margin:0;
+    font-size:12px;
+    color:#8b7fa8;
+    text-transform:uppercase;
+}
+
+.user-stat-info h2{
+    margin-top:8px;
+    font-size:28px;
+    color:#24143d;
+}
+
+.user-stat-icon{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#f3e8ff;
+    color:#9333ea;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

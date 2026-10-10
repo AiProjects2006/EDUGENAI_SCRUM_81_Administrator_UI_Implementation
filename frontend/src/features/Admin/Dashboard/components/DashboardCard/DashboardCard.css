@@ -1,0 +1,48 @@
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display:flex;
+    align-items:center;
+    gap:15px;
+    width:100%;
+    box-sizing:border-box;
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+}
+
+.card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #f3e8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a855f7;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    margin: 0;
+    color: #8b7fa8;
+    font-size: 13px;
+}
+
+.card-value {
+    margin: 6px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f1235;
+}
+
+.card-growth {
+    margin: 0;
+    font-size: 12px;
+    color: #22c55e;
+    font-weight: 600;
+}

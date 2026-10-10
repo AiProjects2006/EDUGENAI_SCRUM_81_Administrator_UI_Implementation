@@ -1,0 +1,116 @@
+.user-table-card{
+    margin-top:25px;
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:15px;
+    color:#7b6c92;
+    font-size:13px;
+    border-bottom:1px solid #ece8f5;
+}
+
+td{
+    padding:18px 15px;
+    border-bottom:1px solid #f2eef8;
+}
+
+.user-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#ede9fe;
+    color:#9333ea;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.user-info h4{
+    margin:0;
+    font-size:15px;
+}
+
+.user-info p{
+    margin:3px 0 0;
+    color:#8b7fa8;
+    font-size:12px;
+}
+
+.role-badge{
+    background:#f3e8ff;
+    color:#9333ea;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status.active{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.status.pending{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.status.suspended{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.icon-btn{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:8px;
+    background:#f4f0fb;
+    color:#7c3aed;
+    margin-right:8px;
+    cursor:pointer;
+}
+
+.icon-btn.delete{
+    color:#ef4444;
+}
+
+/* Row delete animation */
+.deleting-row{
+    animation:fadeOutRow .35s ease forwards;
+}
+
+@keyframes fadeOutRow{
+    from{
+        opacity:1;
+        transform:translateX(0);
+    }
+    to{
+        opacity:0;
+        transform:translateX(-15px);
+    }
+}

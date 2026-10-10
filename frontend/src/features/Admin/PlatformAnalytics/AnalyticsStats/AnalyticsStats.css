@@ -1,0 +1,85 @@
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.analytics-stat-card {
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #eee5f5;
+    border-radius: 9px;
+}
+
+.analytics-stat-content {
+    min-width: 0;
+}
+
+.analytics-stat-title {
+    display: block;
+    color: #8b818f;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.analytics-stat-value {
+    display: block;
+    color: #211033;
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.analytics-stat-change {
+    display: block;
+    color: #55a36a;
+    font-size: 11px;
+}
+
+.analytics-stat-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.analytics-stat-icon.users {
+    color: #8d3bb9;
+    background: #f3e8f8;
+}
+
+.analytics-stat-icon.engagement {
+    color: #3b8e68;
+    background: #e7f5ee;
+}
+
+.analytics-stat-icon.courses {
+    color: #4f76b9;
+    background: #eaf0fa;
+}
+
+.analytics-stat-icon.ai {
+    color: #d14e9c;
+    background: #fae9f4;
+}
+
+@media (max-width: 1100px) {
+    .analytics-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 550px) {
+    .analytics-stats {
+        grid-template-columns: 1fr;
+    }
+}

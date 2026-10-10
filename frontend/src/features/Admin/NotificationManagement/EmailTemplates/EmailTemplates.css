@@ -1,0 +1,254 @@
+.email-templates-card {
+    width: 100%;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #eee3f2;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.email-templates-header {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.email-templates-header h2 {
+    margin: 0;
+    color: #32163b;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.email-templates-header p {
+    margin: 4px 0 0;
+    color: #9a8da0;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.email-templates-count {
+    flex-shrink: 0;
+    padding: 4px 7px;
+    border-radius: 4px;
+    background: #f5eafa;
+    color: #72008c;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.email-template-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-template {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 0;
+    border-top: 1px solid #f0e9f3;
+    min-height: 39px;
+    box-sizing: border-box;
+}
+
+.email-template:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.email-template:last-child {
+    padding-bottom: 0;
+}
+
+.email-template-icon {
+    width: 29px;
+    height: 29px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #f5eafa;
+    color: #72008c;
+}
+
+.email-template-info {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.email-template-info strong {
+    color: #3b2940;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.email-template-info span {
+    color: #9a8da0;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.email-template-edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    height: 27px;
+    padding: 0 8px;
+    border: 1px solid #e3d3e8;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #72008c;
+    font-size: 14px;
+    font-weight: 450;
+    cursor: pointer;
+}
+
+.email-template-edit:hover {
+    background: #faf5fc;
+}
+
+.template-editor-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(31, 14, 38, 0.42);
+    z-index: 1000;
+}
+
+.template-editor {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(37, 14, 45, 0.2);
+}
+
+.template-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    border-bottom: 1px solid #eee3f2;
+}
+
+.template-editor-header h3 {
+    margin: 0;
+    color: #32163b;
+    font-size: 18px;
+}
+
+.template-editor-header p {
+    margin: 4px 0 0;
+    color: #948698;
+    font-size: 14px;
+}
+
+.template-editor-close {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background: #f7f2f9;
+    color: #766578;
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.template-editor-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 15px;
+}
+
+.template-editor-body label {
+    color: #6f6175;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.template-editor-body input,
+.template-editor-body textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #e5dbe8;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #403343;
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+.template-editor-body input {
+    height: 32px;
+}
+
+.template-editor-body textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.template-editor-body input:focus,
+.template-editor-body textarea:focus {
+    border-color: #b77bc5;
+}
+
+.template-editor-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+    padding: 12px 15px;
+    border-top: 1px solid #eee3f2;
+}
+
+.template-cancel-btn,
+.template-save-btn {
+    height: 28px;
+    padding: 0 11px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.template-cancel-btn {
+    border: 1px solid #e0d3e4;
+    background: #ffffff;
+    color: #6f6175;
+}
+
+.template-save-btn {
+    border: 1px solid #72008c;
+    background: #72008c;
+    color: #ffffff;
+}
+
+@media (max-width: 550px) {
+    .email-template {
+        align-items: flex-start;
+    }
+
+    .email-template-edit {
+        margin-left: auto;
+    }
+
+    .template-editor-overlay {
+        padding: 12px;
+    }
+}

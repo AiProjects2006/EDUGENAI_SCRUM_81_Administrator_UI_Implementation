@@ -1,0 +1,134 @@
+.activity-types-panel {
+    min-height: 280px;
+    background: #ffffff;
+    border: 1px solid #eee5f5;
+    border-radius: 9px;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.activity-types-header h2 {
+    margin: 0;
+    color: #211033;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.activity-types-header p {
+    margin: 5px 0 0;
+    color: #897f90;
+    font-size: 12px;
+}
+
+.ai-chart-content {
+    min-height: 215px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+.donut-chart {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: conic-gradient(
+            #ee55bd 0 45%,
+            #8d4bd0 45% 77%,
+            #cdb3dc 77% 100%
+    );
+}
+
+.donut-chart::before {
+    content: "";
+    position: absolute;
+    width: 94px;
+    height: 94px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.donut-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.donut-inner strong {
+    display: block;
+    color: #211033;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.donut-inner span {
+    display: block;
+    margin-top: 3px;
+    color: #9b8fa0;
+    font-size: 9px;
+}
+
+.ai-legend {
+    min-width: 125px;
+}
+
+.ai-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 14px;
+    color: #665b6c;
+    font-size: 11px;
+}
+
+.ai-legend-item span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ai-legend-item strong {
+    color: #3d3044;
+    font-size: 11px;
+}
+
+.ai-dot {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.dot-0 {
+    background: #ee55bd;
+}
+
+.dot-1 {
+    background: #8d4bd0;
+}
+
+.dot-2 {
+    background: #cdb3dc;
+}
+
+@media (max-width: 600px) {
+    .activity-types-panel {
+        padding: 12px;
+    }
+
+    .ai-chart-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 0 5px;
+    }
+
+    .ai-legend {
+        width: 100%;
+    }
+}

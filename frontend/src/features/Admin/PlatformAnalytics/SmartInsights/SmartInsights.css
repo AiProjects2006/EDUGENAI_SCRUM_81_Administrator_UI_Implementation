@@ -1,0 +1,89 @@
+.smart-insights-panel {
+    background: #ffffff;
+    border: 1px solid #eee5f5;
+    border-radius: 9px;
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+.smart-insights-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.smart-insights-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #9a38d1;
+    background: #f4eafa;
+}
+
+.smart-insights-title h2 {
+    margin: 0;
+    color: #211033;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.smart-insights-title p {
+    margin: 4px 0 0;
+    color: #897f90;
+    font-size: 14px;
+}
+
+.smart-insights-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.smart-insight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    background: #faf8fc;
+    border: 1px solid #f0eaf4;
+    border-radius: 7px;
+}
+
+.smart-insight-number {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #8d2db8;
+    background: #f0e2f6;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.smart-insight-content h3 {
+    margin: 1px 0 5px;
+    color: #3d3044;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.smart-insight-content p {
+    margin: 0;
+    color: #8b818f;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .smart-insights-list {
+        grid-template-columns: 1fr;
+    }
+}

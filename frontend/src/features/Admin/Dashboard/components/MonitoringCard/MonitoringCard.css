@@ -1,0 +1,114 @@
+/* Main Card */
+.monitoring-card {
+    flex: 2;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.monitoring-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.monitoring-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2d2d2d;
+}
+
+.monitoring-status {
+    background: #EDE9FE;
+    color: #7C3AED;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Service List */
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Single Service */
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.service-status {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* Percentage */
+.service-percent {
+    font-size: 16px;
+    font-weight: bold;
+    color: #7C3AED;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #ECECEC;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7C3AED, #A855F7);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+/* Footer */
+.monitoring-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.monitoring-footer p {
+    color: #777;
+    font-size: 14px;
+}
+
+.monitoring-footer button {
+    background: #7C3AED;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.monitoring-footer button:hover {
+    background: #6D28D9;
+}
