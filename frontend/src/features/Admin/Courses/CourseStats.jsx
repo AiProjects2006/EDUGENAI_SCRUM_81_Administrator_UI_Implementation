@@ -5,27 +5,38 @@ import {
     Archive
 } from "lucide-react";
 
-function CourseStats() {
+function CourseStats({ courses = [] }) {
+
+    const total = courses.length;
+    const pending = courses.filter(
+        c => (c.status || '').toLowerCase() === 'pending' || (c.status || '').toLowerCase() === 'draft'
+    ).length;
+    const approved = courses.filter(
+        c => (c.status || '').toLowerCase() === 'approved' || (c.status || '').toLowerCase() === 'published'
+    ).length;
+    const archived = courses.filter(
+        c => (c.status || '').toLowerCase() === 'archived'
+    ).length;
 
     const stats = [
         {
             title: "Total Courses",
-            value: 24,
+            value: total,
             icon: BookOpen
         },
         {
             title: "Pending Approval",
-            value: 6,
+            value: pending,
             icon: Clock
         },
         {
             title: "Approved",
-            value: 15,
+            value: approved,
             icon: CheckCircle
         },
         {
             title: "Archived",
-            value: 3,
+            value: archived,
             icon: Archive
         }
     ];

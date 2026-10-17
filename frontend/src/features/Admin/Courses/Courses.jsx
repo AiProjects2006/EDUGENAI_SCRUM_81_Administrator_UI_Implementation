@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./Courses.css";
 
 import CourseModal from "./CourseModal/CourseModal";
@@ -9,16 +9,21 @@ import CourseTable from "./CourseTable";
 import CourseFilters from "./CourseFilters/CourseFilters";
 import CourseDetails from "./CourseDetails/CourseDetails";
 
-import { courses as initialCourses } from "./data/courseData";
+import {
+    fetchCoursesFromBackoffice,
+    updateCourseInBackoffice,
+    updateCourseStatusInBackoffice,
+    deleteCourseInBackoffice,
+    deduplicateCourses
+} from "../../../services/backofficeService";
 
 function Courses() {
-    const [courseList, setCourseList] = useState(initialCourses);
+    const [courseList, setCourseList] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [modalMode, setModalMode] = useState("view");
     const [detailsCourse, setDetailsCourse] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
-
     const coursesPerPage = 10;
 
     const [filters, setFilters] = useState({
@@ -28,26 +33,57 @@ function Courses() {
         grade: ""
     });
 
+    const loadCourses = useCallback(async () => {
+        try {
+            const data = await fetchCoursesFromBackoffice();
+            if (Array.isArray(data)) {
+                setCourseList(deduplicateCourses(data));
+            }
+        } catch (e) {
+            console.error("Failed loading admin courses:", e);
+        }
+    }, []);
+
+    useEffect(() => {
+        loadCourses();
+        window.addEventListener("focus", loadCourses);
+        const interval = setInterval(loadCourses, 12000);
+        return () => {
+            window.removeEventListener("focus", loadCourses);
+            clearInterval(interval);
+        };
+    }, [loadCourses]);
+
     useEffect(() => {
         setCurrentPage(1);
     }, [filters]);
 
     const filteredCourses = courseList.filter((course) => {
-        const matchesSearch = course.title
+        const matchesSearch = (course.title || course.name || "")
             .toLowerCase()
             .includes(filters.search.toLowerCase());
 
-        const matchesStatus =
-            filters.status === "" ||
-            course.status === filters.status;
+        const courseStatus = (course.status || "").toLowerCase();
+        const filterStatus = filters.status.toLowerCase();
+
+        let matchesStatus = true;
+        if (filters.status !== "") {
+            if (filterStatus === "approved" || filterStatus === "published") {
+                matchesStatus = courseStatus === "approved" || courseStatus === "published";
+            } else if (filterStatus === "pending" || filterStatus === "draft") {
+                matchesStatus = courseStatus === "pending" || courseStatus === "draft";
+            } else {
+                matchesStatus = courseStatus === filterStatus;
+            }
+        }
 
         const matchesSubject =
             filters.subject === "" ||
-            course.subject === filters.subject;
+            (course.subject || "").toLowerCase() === filters.subject.toLowerCase();
 
         const matchesGrade =
             filters.grade === "" ||
-            course.grade === filters.grade;
+            (course.grade || "").toLowerCase().includes(filters.grade.toLowerCase());
 
         return (
             matchesSearch &&
@@ -86,12 +122,14 @@ function Courses() {
         setSelectedCourse(null);
     };
 
-    const handleApprove = (course) => {
+    const handleApprove = async (course) => {
         const updatedCourse = {
             ...course,
             status: "Approved"
         };
 
+        await updateCourseStatusInBackoffice(course.id, "Approved");
+
         setCourseList((previousCourses) =>
             previousCourses.map((item) =>
                 item.id === course.id
@@ -103,12 +141,14 @@ function Courses() {
         setDetailsCourse(updatedCourse);
     };
 
-    const handleArchive = (course) => {
+    const handleArchive = async (course) => {
         const updatedCourse = {
             ...course,
             status: "Archived"
         };
 
+        await updateCourseStatusInBackoffice(course.id, "Archived");
+
         setCourseList((previousCourses) =>
             previousCourses.map((item) =>
                 item.id === course.id
@@ -120,7 +160,9 @@ function Courses() {
         setDetailsCourse(updatedCourse);
     };
 
-    const handleSave = (updatedCourse) => {
+    const handleSave = async (updatedCourse) => {
+        await updateCourseInBackoffice(updatedCourse.id, updatedCourse);
+
         setCourseList((previousCourses) =>
             previousCourses.map((course) =>
                 course.id === updatedCourse.id
@@ -132,12 +174,14 @@ function Courses() {
         setSelectedCourse(null);
     };
 
-    const handleDelete = (course) => {
+    const handleDelete = async (course) => {
         const confirmed = window.confirm(
             `Are you sure you want to delete ${course.title}?`
         );
 
         if (!confirmed) return;
+
+        await deleteCourseInBackoffice(course.id);
 
         setCourseList((previousCourses) =>
             previousCourses.filter(
@@ -152,7 +196,7 @@ function Courses() {
 
     const totalPages = Math.ceil(
         filteredCourses.length / coursesPerPage
-    );
+    ) || 1;
 
     const startIndex =
         (currentPage - 1) * coursesPerPage;
@@ -178,7 +222,7 @@ function Courses() {
                     </div>
                 </div>
 
-                <CourseStats />
+                <CourseStats courses={courseList} />
 
                 <div className="courses-content">
                     <h2>Course Management</h2>
@@ -224,7 +268,7 @@ function Courses() {
                     <CourseModal
                         course={selectedCourse}
                         mode={modalMode}
-                        onClose={() => setSelectedCourse(null)}
+                        onClose={closeModal}
                         onSave={handleSave}
                     />
                 </div>
