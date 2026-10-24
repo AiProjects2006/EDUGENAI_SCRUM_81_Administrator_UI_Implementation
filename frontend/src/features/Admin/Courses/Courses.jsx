@@ -47,10 +47,28 @@ function Courses() {
     useEffect(() => {
         loadCourses();
         window.addEventListener("focus", loadCourses);
-        const interval = setInterval(loadCourses, 12000);
+        window.addEventListener("storage", loadCourses);
+        window.addEventListener("coursesUpdated", loadCourses);
+
+        let channel = null;
+        try {
+            if (typeof BroadcastChannel !== "undefined") {
+                channel = new BroadcastChannel("edugenai_channel");
+                channel.onmessage = (event) => {
+                    if (event.data?.type === "COURSES_UPDATED" || event.data?.type === "COURSE_PUBLISHED") {
+                        loadCourses();
+                    }
+                };
+            }
+        } catch (_) {}
+
+        const interval = setInterval(loadCourses, 3000);
         return () => {
             window.removeEventListener("focus", loadCourses);
+            window.removeEventListener("storage", loadCourses);
+            window.removeEventListener("coursesUpdated", loadCourses);
             clearInterval(interval);
+            if (channel) channel.close();
         };
     }, [loadCourses]);
 

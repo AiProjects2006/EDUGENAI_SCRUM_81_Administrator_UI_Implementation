@@ -2,84 +2,87 @@ const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL || 'http://localhost:8087';
 const BACKOFFICE_URL = import.meta.env.VITE_BACKOFFICE_URL || 'http://localhost:8086';
 const STORAGE_KEY = 'admin_courses';
 
-const DEFAULT_COURSES = [
-  {
-    id: 1,
-    title: 'Primary Mathematics',
-    creator: 'Alex Rivers',
-    subject: 'Mathematics',
-    grade: 'Grade 6',
-    status: 'Approved',
-    date: '2026-08-01',
-    description: 'Learn basic mathematics concepts, problem solving, and numbers.',
-    lessons: 12,
-    activities: 8
-  },
-  {
-    id: 2,
-    title: 'Junior Science',
-    creator: 'Kasun Perera',
-    subject: 'Science',
-    grade: 'Grade 6',
-    status: 'Approved',
-    date: '2026-08-01',
-    description: 'Learn basic science concepts, living things, and the environment through simple lessons and activities.',
-    lessons: 12,
-    activities: 8
-  },
-  {
-    id: 3,
-    title: 'Elementary Mathematics',
-    creator: 'Nimal Silva',
-    subject: 'Mathematics',
-    grade: 'Grade 8',
-    status: 'Pending',
-    date: '2026-08-02',
-    description: 'Improve mathematical skills through numbers, algebra, geometry, and problem-solving exercises.',
-    lessons: 15,
-    activities: 10
-  },
-  {
-    id: 4,
-    title: 'ICT Basics',
-    creator: 'Amal Fernando',
-    subject: 'Technology',
-    grade: 'Grade 9',
-    status: 'Approved',
-    date: '2026-08-03',
-    description: 'Understand computer fundamentals, information technology, and basic digital skills through practical learning.',
-    lessons: 10,
-    activities: 5
-  },
-  {
-    id: 5,
-    title: 'English Grammar',
-    creator: 'Sanduni Perera',
-    subject: 'English',
-    grade: 'Grade 7',
-    status: 'Archived',
-    date: '2026-08-04',
-    description: 'Develop English grammar skills through sentence formation, tenses, vocabulary, and language exercises.',
-    lessons: 14,
-    activities: 9
-  }
+const DEFAULT_COURSES = [];
+
+const UNNECESSARY_TITLES = [
+  'junior science',
+  'elementary mathematics',
+  'english grammar',
+  'science explorer',
+  'test course 999',
+  'test new course',
+  'direct gateway'
 ];
+
+export const isLegacyDefaultCourse = (course) => {
+  if (!course) return false;
+  const t = (course.title || course.name || '').trim().toLowerCase();
+  return UNNECESSARY_TITLES.some(p => t.includes(p));
+};
+
+export const purgeJunkCourses = () => {
+  try {
+    const keys = [STORAGE_KEY, 'courses', 'creator_courses', 'student_courses', 'user_courses'];
+    for (const key of keys) {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          const cleaned = parsed.filter(c => !isLegacyDefaultCourse(c));
+          if (cleaned.length !== parsed.length) {
+            localStorage.setItem(key, JSON.stringify(cleaned));
+          }
+        }
+      }
+    }
+  } catch (_) { }
+};
+
+if (typeof window !== 'undefined') {
+  purgeJunkCourses();
+}
+
+const broadcastCourseChange = (type = 'COURSES_UPDATED', payload = null) => {
+  try {
+    if (typeof BroadcastChannel !== 'undefined') {
+      const channel = new BroadcastChannel('edugenai_channel');
+      channel.postMessage({ type, payload, timestamp: Date.now() });
+      channel.close();
+    }
+  } catch (_) { }
+
+  try {
+    // Only dispatch custom event, do NOT trigger synthetic window 'storage' event which causes infinite loops
+    window.dispatchEvent(new CustomEvent('coursesUpdated', { detail: { type, payload } }));
+  } catch (_) { }
+};
+
+const isJwtToken = (tok) => {
+  if (!tok || typeof tok !== 'string') return false;
+  const parts = tok.split('.');
+  return parts.length === 3 && parts[0].length > 10;
+};
 
 const getStoredLocalCourses = () => {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('courses');
-    if (raw) return JSON.parse(raw);
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('courses') || localStorage.getItem('creator_courses');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        return parsed.filter(c => !isLegacyDefaultCourse(c));
+      }
+    }
   } catch (e) {
     console.error('Failed reading courses from localStorage:', e);
   }
-  return DEFAULT_COURSES;
+  return [];
 };
 
 export const deduplicateCourses = (courses = []) => {
   const seen = new Set();
   const result = [];
   for (const c of courses) {
-    if (!c) continue;
+    if (!c || isLegacyDefaultCourse(c)) continue;
     const key = (c.title || c.name || '').trim().toLowerCase();
     const idKey = String(c.id || c.courseId || '');
     if (key && seen.has(key)) continue;
@@ -96,7 +99,8 @@ const saveStoredLocalCourses = (courses) => {
     const deduped = deduplicateCourses(courses);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(deduped));
     localStorage.setItem('courses', JSON.stringify(deduped));
-    window.dispatchEvent(new Event('storage'));
+    localStorage.setItem('creator_courses', JSON.stringify(deduped));
+    broadcastCourseChange('COURSES_UPDATED', deduped);
   } catch (e) {
     console.error('Failed saving courses to localStorage:', e);
   }
@@ -119,7 +123,7 @@ const normalizeAdminCourse = (c) => {
     title: c.title || c.name || 'Untitled Course',
     creator: c.creator || c.author || 'Content Creator',
     subject: c.subject || 'General',
-    grade: c.grade || c.gradeLevel || 'Grade 6',
+    grade: c.grade || c.gradeLevel || 'Grade 3',
     status: status,
     date: c.date || c.createdAt || new Date().toISOString().slice(0, 10),
     description: c.description || '',
@@ -130,19 +134,30 @@ const normalizeAdminCourse = (c) => {
 
 const requestBackoffice = async (endpoint, options = {}) => {
   const token = localStorage.getItem('access_token');
+  const validToken = isJwtToken(token) ? token : null;
+  const isMutation = options.method && options.method.toUpperCase() !== 'GET';
   const headers = {
     'Content-Type': 'application/json',
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(isMutation && validToken ? { Authorization: `Bearer ${validToken}` } : {}),
     ...(options.headers || {})
   };
 
-  const isMutation = options.method && options.method.toUpperCase() !== 'GET';
-
+  // Primary: Direct Backoffice API port 8086 as per system architecture diagram
   try {
-    const res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
+    let res = await fetch(`${BACKOFFICE_URL}/api/v1/backoffice${endpoint}`, {
       ...options,
       headers
     });
+
+    if (res.status === 401 && headers.Authorization) {
+      const retryHeaders = { ...headers };
+      delete retryHeaders.Authorization;
+      res = await fetch(`${BACKOFFICE_URL}/api/v1/backoffice${endpoint}`, {
+        ...options,
+        headers: retryHeaders
+      });
+    }
+
     if (res.ok) {
       const json = await res.json();
       return json.data !== undefined ? json.data : json;
@@ -151,29 +166,43 @@ const requestBackoffice = async (endpoint, options = {}) => {
       const errJson = await res.json().catch(() => null);
       throw new Error((errJson && errJson.message) || `Request failed with status ${res.status}`);
     }
-  } catch (gatewayErr) {
-    if (isMutation && !gatewayErr.message?.includes('Failed to fetch') && !gatewayErr.message?.includes('NetworkError')) {
-      throw gatewayErr;
+  } catch (backofficeErr) {
+    if (isMutation && !backofficeErr.message?.includes('Failed to fetch') && !backofficeErr.message?.includes('NetworkError')) {
+      throw backofficeErr;
     }
   }
 
+  // Fallback: via API Gateway
   try {
-    const res = await fetch(`${BACKOFFICE_URL}/api/v1/backoffice${endpoint}`, {
+    let res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
       ...options,
       headers
     });
+
+    if (res.status === 401 && headers.Authorization) {
+      const retryHeaders = { ...headers };
+      delete retryHeaders.Authorization;
+      res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
+        ...options,
+        headers: retryHeaders
+      });
+    }
+
     if (res.ok) {
       const json = await res.json();
       return json.data !== undefined ? json.data : json;
     }
     const errJson = await res.json().catch(() => null);
     throw new Error((errJson && errJson.message) || `Request failed with status ${res.status}`);
-  } catch (backofficeErr) {
-    throw new Error(backofficeErr.message || 'Backoffice API currently unreachable');
+  } catch (gatewayErr) {
+    throw new Error(gatewayErr.message || 'Backoffice API currently unreachable');
   }
 };
 
 export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
+  let combined = [];
+
+  // 1. Try Backoffice API
   try {
     const params = new URLSearchParams();
     if (status) params.append('status', status);
@@ -182,15 +211,34 @@ export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
     const qs = params.toString() ? `?${params.toString()}` : '';
     const data = await requestBackoffice(`/courses${qs}`);
     if (Array.isArray(data) && data.length > 0) {
-      const normalized = deduplicateCourses(data.map(normalizeAdminCourse));
-      saveStoredLocalCourses(normalized);
-      return normalized;
+      combined = [...combined, ...data];
     }
   } catch (err) {
-    console.warn('Using local courses fallback in Admin UI:', err.message);
+    console.warn('Backoffice API request skipped/failed in Admin UI:', err.message);
   }
 
-  let list = getStoredLocalCourses().map(normalizeAdminCourse);
+  // 2. Supplement from Course Service
+  try {
+    const csRes = await fetch(`${GATEWAY_URL}/api/v1/courses`).catch(() =>
+      fetch('http://localhost:8082/api/v1/courses')
+    );
+    if (csRes && csRes.ok) {
+      const csJson = await csRes.json();
+      const csList = Array.isArray(csJson) ? csJson : csJson.data || [];
+      if (Array.isArray(csList) && csList.length > 0) {
+        combined = [...combined, ...csList];
+      }
+    }
+  } catch (_) { }
+
+  // 3. Supplement from localStorage
+  const local = getStoredLocalCourses();
+  if (Array.isArray(local) && local.length > 0) {
+    combined = [...local, ...combined];
+  }
+
+  let list = deduplicateCourses(combined.map(normalizeAdminCourse));
+
   if (status) {
     list = list.filter((c) => (c.status || '').toLowerCase() === status.toLowerCase());
   }

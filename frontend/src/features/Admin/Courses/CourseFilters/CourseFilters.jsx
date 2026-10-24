@@ -37,7 +37,9 @@ function CourseFilters({
             >
                 <option value="">All Statuses</option>
                 <option value="Approved">Approved</option>
+                <option value="Published">Published</option>
                 <option value="Pending">Pending</option>
+                <option value="Draft">Draft</option>
                 <option value="Archived">Archived</option>
             </select>
 
@@ -51,9 +53,9 @@ function CourseFilters({
                 }
             >
                 <option value="">All Subjects</option>
-                <option value="Science">Science</option>
                 <option value="Mathematics">Mathematics</option>
-                <option value="Technology">ICT</option>
+                <option value="Environmental Studies">Environmental Studies</option>
+                <option value="ICT">ICT</option>
             </select>
 
             <select
@@ -66,10 +68,9 @@ function CourseFilters({
                 }
             >
                 <option value="">All Grades</option>
-                <option value="Grade 6">Grade 6</option>
-                <option value="Grade 7">Grade 7</option>
-                <option value="Grade 8">Grade 8</option>
-                <option value="Grade 9">Grade 9</option>
+                <option value="Grade 3">Grade 3</option>
+                <option value="Grade 4">Grade 4</option>
+                <option value="Grade 5">Grade 5</option>
             </select>
 
             <button
