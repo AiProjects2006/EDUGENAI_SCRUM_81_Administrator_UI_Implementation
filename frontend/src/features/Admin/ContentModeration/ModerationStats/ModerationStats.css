@@ -1,0 +1,73 @@
+.moderation-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.moderation-stat-card {
+    min-height: 90px;
+    padding: 15px 17px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid #eee5f5;
+    border-radius: 9px;
+}
+
+.moderation-stat-title {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #6f6677;
+}
+
+.moderation-stat-value {
+    display: block;
+    font-size: 24px;
+    line-height: 1;
+    color: #211033;
+}
+
+.moderation-stat-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moderation-stat-icon.pending {
+    background: #eadcf5;
+    color: #7b159f;
+}
+
+.moderation-stat-icon.approved {
+    background: #e7f8ee;
+    color: #22a765;
+}
+
+.moderation-stat-icon.rejected {
+    background: #fcecef;
+    color: #c93669;
+}
+
+.moderation-stat-icon.ai-generated {
+    background: #e8e9ff;
+    color: #5c5ce6;
+}
+
+@media (max-width: 900px) {
+    .moderation-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .moderation-stats {
+        grid-template-columns: 1fr;
+    }
+}
