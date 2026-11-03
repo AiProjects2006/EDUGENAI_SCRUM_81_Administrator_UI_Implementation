@@ -7,13 +7,75 @@ import UserTable from "./components/UserTable/UserTable.jsx";
 import {FaUser} from "react-icons/fa";
 import AnalyticsChart from "./components/AnalyticsChart/AnalyticsChart.jsx";
 import { Users, Sparkles, BookOpen } from "lucide-react";
-
+import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { fetchUsersFromBackoffice, fetchCourseStatsFromBackoffice,fetchActivityStatsFromBackoffice, fetchEnrollmentStatsFromBackoffice } from "../../../services/backofficeService.js";
 
 function Dashboard() {
+
+    const [activeStudents, setActiveStudents] = useState(null);
+    const [totalUsers, setTotalUsers] = useState(null);
+    const [totalCourses, setTotalCourses] = useState(null);
+    const [totalActivities, setTotalActivities] = useState(null);
+
+    useEffect(() => {
+        const loadDashboardUsers = async () => {
+            try {
+                const users = await fetchUsersFromBackoffice();
+                setTotalUsers(users.length);
+            } catch (error) {
+                console.error("Failed to load users:", error);
+            }
+        };
+
+        loadDashboardUsers();
+    }, []);
+
+    useEffect(() => {
+        const loadActiveStudents = async () => {
+            try {
+                const stats = await fetchEnrollmentStatsFromBackoffice();
+                setActiveStudents(stats.activeStudents ?? null);
+            } catch (error) {
+                console.error("Failed to load active students:", error);
+            }
+        };
+
+        loadActiveStudents();
+    }, []);
+
+    useEffect(() => {
+        const loadCourseStats = async () => {
+            try {
+                const stats = await fetchCourseStatsFromBackoffice();
+
+                setTotalCourses(stats.totalCourses ?? null);
+            } catch (error) {
+                console.error("Failed to load course statistics:", error);
+            }
+        };
+
+        loadCourseStats();
+    }, []);
+
+    useEffect(() => {
+        const loadActivityStats = async () => {
+            try {
+                const stats = await fetchActivityStatsFromBackoffice();
+
+                setTotalActivities(stats.totalActivities ?? null);
+            } catch (error) {
+                console.error("Failed to load activity statistics:", error);
+            }
+        };
+
+        loadActivityStats();
+    }, []);
 
     return (
 
     <BackofficeLayout>
+        <Toaster position="top-right" />
 
         <div className="dashboard-page">
 
@@ -29,25 +91,29 @@ function Dashboard() {
 
                 <DashboardCard
                     title="Total Users"
-                    value="12,450"
+                    value={totalUsers === null ? "—" : totalUsers.toLocaleString()}
                     icon={<Users size={18} />}
                 />
 
                 <DashboardCard
                     title="Active Students"
-                    value="10,210"
-                    icon={<FaUser size={18}/>}
+                    value={activeStudents === null ? "—" : activeStudents.toLocaleString()}
+                    icon={<FaUser size={18} />}
                 />
 
                 <DashboardCard
                     title="Total Courses"
-                    value="450"
+                    value={totalCourses === null ? "—" : totalCourses.toLocaleString()}
                     icon={<BookOpen size={18} />}
                 />
 
                 <DashboardCard
-                    title="AI Activities"
-                    value="45,200"
+                    title="Activities"
+                    value={
+                        totalActivities === null
+                            ? "—"
+                            : totalActivities.toLocaleString()
+                    }
                     icon={<Sparkles size={18} />}
                 />
 

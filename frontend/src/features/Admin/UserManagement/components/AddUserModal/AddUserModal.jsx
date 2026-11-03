@@ -5,29 +5,29 @@ import { useState, useEffect } from "react";
 function AddUserModal({ onClose, onSave, editingUser }) {
 
     const [formData, setFormData] = useState({
-        fullName: "",
+        firstName: "",
+        lastName: "",
+        username: "",
         email: "",
-        role: "Student",
-        grade: "Grade 3",
-        status: "Active",
+        contactNumber: "",
+        role: "STUDENT",
         password: "",
     });
 
     useEffect(() => {
-
         if (editingUser) {
+            const nameParts = (editingUser.name || "").trim().split(/\s+/);
 
             setFormData({
-                fullName: editingUser.name,
-                email: editingUser.email,
-                role: editingUser.role,
-                grade: editingUser.grade,
-                status: editingUser.status,
-                password: editingUser.password || "",
+                firstName: editingUser.firstName || nameParts[0] || "",
+                lastName: editingUser.lastName || nameParts.slice(1).join(" ") || "",
+                username: editingUser.username || "",
+                email: editingUser.email || "",
+                contactNumber: editingUser.contactNumber || "",
+                password: "",
+                role: editingUser.role || "STUDENT",
             });
-
         }
-
     }, [editingUser]);
 
     const handleChange = (e) => {
@@ -38,14 +38,27 @@ function AddUserModal({ onClose, onSave, editingUser }) {
     };
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
 
-        onSave({
-            ...editingUser,
-            ...formData,
-            name: formData.fullName,
-        });
+        if (editingUser) {
+            onSave({
+                id: editingUser.id,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                contactNumber: formData.contactNumber,
+            });
+        } else {
+            onSave({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                username: formData.username,
+                email: formData.email,
+                contactNumber: formData.contactNumber,
+                password: formData.password,
+                role: formData.role,
+            });
+        }
     };
 
     return (
@@ -72,24 +85,43 @@ function AddUserModal({ onClose, onSave, editingUser }) {
                 <form onSubmit={handleSubmit}>
 
                     <div className="form-group">
-
-                        <label>Full Name</label>
-
+                        <label>First Name</label>
                         <input
                             type="text"
-                            name="fullName"
-                            placeholder="Enter full name"
-                            value={formData.fullName}
+                            name="firstName"
+                            placeholder="Enter first name"
+                            value={formData.firstName}
                             onChange={handleChange}
                             required
                         />
-
                     </div>
 
                     <div className="form-group">
+                        <label>Last Name</label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            placeholder="Enter last name"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
+                    <div className="form-group">
+                        <label>Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Enter username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
                         <label>Email</label>
-
                         <input
                             type="email"
                             name="email"
@@ -98,77 +130,46 @@ function AddUserModal({ onClose, onSave, editingUser }) {
                             onChange={handleChange}
                             required
                         />
-
-                    </div>
-
-                    <div className="form-row">
-
-                        <div className="form-group">
-
-                            <label>User Type</label>
-
-                            <select
-                                name="role"
-                                value={formData.role}
-                                onChange={handleChange}
-                            >
-
-                                <option>Student</option>
-                                <option>Content Creator</option>
-                                <option>Administrator</option>
-
-                            </select>
-
-                        </div>
-
-                        <div className="form-group">
-
-                            <label>Status</label>
-
-                            <select
-                                name="status"
-                                value={formData.status}
-                                onChange={handleChange}
-                            >
-
-                                <option>Active</option>
-                                <option>Inactive</option>
-                                <option>Suspended</option>
-
-                            </select>
-
-                        </div>
-
                     </div>
 
                     <div className="form-group">
-
-                        <label>Grade / Subject</label>
-
+                        <label>Contact Number</label>
                         <input
-                            type="text"
-                            name="grade"
-                            placeholder="Grade or Subject"
-                            value={formData.grade}
+                            type="tel"
+                            name="contactNumber"
+                            placeholder="Enter contact number"
+                            value={formData.contactNumber}
                             onChange={handleChange}
                         />
-
                     </div>
 
                     <div className="form-group">
-
-                        <label>Password</label>
-
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Enter password"
-                            value={formData.password}
+                        <label>User Type</label>
+                        <select
+                            name="role"
+                            value={formData.role}
                             onChange={handleChange}
-                            required
-                        />
-
+                        >
+                            <option value="STUDENT">Student</option>
+                            <option value="CONTENT_CREATOR">Content Creator</option>
+                            <option value="ADMIN">Administrator</option>
+                        </select>
                     </div>
+
+                    {!editingUser && (
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                minLength={8}
+                                required
+                            />
+                        </div>
+                    )}
 
                     <div className="modal-buttons">
 

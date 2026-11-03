@@ -106,9 +106,6 @@ const saveStoredLocalCourses = (courses) => {
   }
 };
 
-/**
- * Normalizes course status for Admin UI view
- */
 const normalizeAdminCourse = (c) => {
   let status = c.status || 'Approved';
   if (status.equalsIgnoreCase ? status.equalsIgnoreCase('published') : status.toLowerCase() === 'published') {
@@ -172,7 +169,6 @@ const requestBackoffice = async (endpoint, options = {}) => {
     }
   }
 
-  // Fallback: via API Gateway
   try {
     let res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
       ...options,
@@ -202,7 +198,6 @@ const requestBackoffice = async (endpoint, options = {}) => {
 export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
   let combined = [];
 
-  // 1. Try Backoffice API
   try {
     const params = new URLSearchParams();
     if (status) params.append('status', status);
@@ -217,7 +212,6 @@ export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
     console.warn('Backoffice API request skipped/failed in Admin UI:', err.message);
   }
 
-  // 2. Supplement from Course Service
   try {
     const csRes = await fetch(`${GATEWAY_URL}/api/v1/courses`).catch(() =>
       fetch('http://localhost:8082/api/v1/courses')
@@ -231,7 +225,6 @@ export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
     }
   } catch (_) { }
 
-  // 3. Supplement from localStorage
   const local = getStoredLocalCourses();
   if (Array.isArray(local) && local.length > 0) {
     combined = [...local, ...combined];
@@ -307,19 +300,144 @@ export const deleteCourseInBackoffice = async (id) => {
   saveStoredLocalCourses(updated);
 };
 
-export const fetchCourseStatsFromBackoffice = async () => {
-  try {
-    const stats = await requestBackoffice('/courses/stats');
-    if (stats) return stats;
-  } catch (err) {
-    console.warn('Using local stats computation in Admin UI:', err.message);
+const USER_MANAGEMENT_API =
+    "http://localhost:8084/api/backoffice/dashboard/creator";
+
+export const fetchUsersFromBackoffice = async () => {
+  const response = await fetch(`${USER_MANAGEMENT_API}/users`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch users: ${response.status}`);
   }
 
-  const all = getStoredLocalCourses();
-  return {
-    totalCourses: all.length,
-    approvedCourses: all.filter((c) => (c.status || '').toLowerCase() === 'approved' || (c.status || '').toLowerCase() === 'published').length,
-    pendingCourses: all.filter((c) => (c.status || '').toLowerCase() === 'pending' || (c.status || '').toLowerCase() === 'draft').length,
-    archivedCourses: all.filter((c) => (c.status || '').toLowerCase() === 'archived').length
-  };
+  const data = await response.json();
+
+  if (!Array.isArray(data)) {
+    throw new Error("Unexpected users response format");
+  }
+
+  return data;
 };
+
+export async function createUserInBackoffice(userData) {
+  const response = await fetch(
+      "http://localhost:8084/api/backoffice/dashboard/creator/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+      }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to create user");
+  }
+
+  return await response.json();
+}
+
+export async function updateUserInBackoffice(userId, userData) {
+  const response = await fetch(
+      `http://localhost:8084/api/backoffice/dashboard/creator/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to update user: ${response.status}`);
+  }
+
+  return true;
+}
+
+export async function deleteUserFromBackoffice(userId) {
+  const response = await fetch(
+      `http://localhost:8084/api/backoffice/dashboard/creator/users/${userId}`,
+      {
+        method: "DELETE"
+      }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to delete user: ${response.status}`);
+  }
+
+  return true;
+}
+
+export async function fetchEnrollmentStatsFromBackoffice() {
+  const response = await fetch(
+      "http://localhost:8084/api/backoffice/dashboard/creator/enrollment-stats"
+  );
+
+  if (!response.ok) {
+    throw new Error(
+        `Failed to fetch enrollment stats: ${response.status}`
+    );
+  }
+
+  return await response.json();
+}
+
+export async function fetchCourseStatsFromBackoffice() {
+  const response = await fetch(
+      "http://localhost:8084/api/backoffice/dashboard/creator/course-stats"
+  );
+
+  if (!response.ok) {
+    throw new Error(
+        `Failed to fetch course stats: ${response.status}`
+    );
+  }
+
+  return await response.json();
+}
+
+export async function fetchActivityStatsFromBackoffice() {
+  const response = await fetch(
+      "http://localhost:8084/api/backoffice/dashboard/creator/activity-stats"
+  );
+
+  if (!response.ok) {
+    throw new Error(
+        `Failed to fetch activity stats: ${response.status}`
+    );
+  }
+
+  return await response.json();
+}
+
+export async function fetchRecentActivitiesFromBackoffice() {
+  const response = await fetch(
+      "http://localhost:8084/api/backoffice/dashboard/creator/recent-activities"
+  );
+
+  if (!response.ok) {
+    throw new Error(
+        `Failed to fetch recent activities: ${response.status}`
+    );
+  }
+
+  return await response.json();
+}
+
+export async function fetchActivityTrendsFromBackoffice() {
+  const response = await fetch(
+      "http://localhost:8084/api/backoffice/dashboard/creator/activity-trends"
+  );
+
+  if (!response.ok) {
+    throw new Error(
+        `Failed to fetch activity trends: ${response.status}`
+    );
+  }
+
+  return await response.json();
+}

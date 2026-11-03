@@ -60,3 +60,38 @@
     color:#8b7fa8;
     font-size:13px;
 }
+
+.chart-date-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 16px;
+}
+
+.chart-date-filters button {
+    padding: 7px 12px;
+    border: 1px solid #E9D5FF;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #6B7280;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chart-date-filters button:hover {
+    background: #F3E8FF;
+    border-color: #A855F7;
+}
+
+.chart-date-filters button.active:hover {
+    background: #9333EA;
+    border-color: #9333EA;
+}
+
+.chart-date-filters button.active {
+    background: #A855F7;
+    border-color: #A855F7;
+    color: #FFFFFF;
+}

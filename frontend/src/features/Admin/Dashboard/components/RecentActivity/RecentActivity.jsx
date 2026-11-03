@@ -1,77 +1,82 @@
 import "./RecentActivity.css";
-import {
-    ShieldAlert,
-    UserPlus,
-    BookOpenCheck,
-    Wand2,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Sparkles } from "lucide-react";
+import { fetchRecentActivitiesFromBackoffice } from "../../../../../services/backofficeService.js";
 
 function RecentActivity() {
+    const [activities, setActivities] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    const activities = [
-        {
-            icon: <UserPlus />,
-            title: "New student registered: Liam J.",
-            time: "5 minutes ago"
-        },
-        {
-            icon: <BookOpenCheck />,
-            title: "Course Published: Bio 101",
-            time: "20 minutes ago"
-        },
-        {
-            icon: <Wand2 />,
-            title: "AI Gen: Physics Quiz",
-            time: "45 minutes ago"
-        },
-        {
-            icon: <ShieldAlert />,
-            title: "Security Alert: Faild Login",
-            time: "1 hour ago"
-        }
-    ];
+    useEffect(() => {
+        const loadActivities = async () => {
+            try {
+                setLoading(true);
+                setError("");
+
+                const data = await fetchRecentActivitiesFromBackoffice();
+
+                setActivities(Array.isArray(data) ? data : []);
+            } catch (err) {
+                console.error("Failed to load recent activities:", err);
+                setError("Unable to load recent activities.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadActivities();
+    }, []);
 
     return (
         <div className="recent-activity">
-
             <div className="activity-header">
-
                 <h2>Recent Activity</h2>
-
-                <button>View All</button>
-
             </div>
 
             <div className="activity-list">
+                {loading && <p>Loading activities...</p>}
 
-                {activities.map((activity, index) => (
+                {error && <p role="alert">{error}</p>}
 
+                {!loading && !error && activities.length === 0 && (
+                    <p>No activities found.</p>
+                )}
+
+                {!loading && !error && activities.map((activity) => (
                     <div
                         className="activity-item"
-                        key={index}
+                        key={activity.activityId}
                     >
-
                         <div className="activity-icon">
-                            {activity.icon}
+                            <Sparkles size={18} />
                         </div>
 
                         <div className="activity-info">
-
                             <h4>{activity.title}</h4>
 
-                            <p>{activity.time}</p>
+                            <p>
+                                {activity.activityType?.replaceAll("_", " ")}
+                                {" • "}
+                                {activity.status}
+                            </p>
+
+                            {activity.createdAt && (
+                                <p className="activity-date">
+                                    {new Date(activity.createdAt).toLocaleDateString("en-US", {
+                                        month: "short",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    })}
+                                </p>
+                            )}
 
                         </div>
-
                     </div>
-
                 ))}
-
             </div>
-
         </div>
     );
-
 }
 
 export default RecentActivity;

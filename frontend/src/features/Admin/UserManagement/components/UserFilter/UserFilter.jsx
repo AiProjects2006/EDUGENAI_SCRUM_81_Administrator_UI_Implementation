@@ -1,86 +1,65 @@
 import "./UserFilter.css";
-
 import { Filter, X } from "lucide-react";
 
-
-function UserFilters() {
-
+function UserFilters({ filters, onFilterChange, onClearFilters }) {
     return (
-
         <div className="user-filters">
-
             <div className="filters-header">
-
                 <div className="filters-title">
-
                     <Filter size={18} />
-
                     <span>Filter Users</span>
-
                 </div>
 
-                <button className="clear-filter-btn">
-
+                <button
+                    type="button"
+                    className="clear-filter-btn"
+                    onClick={onClearFilters}
+                >
                     <X size={16} />
-
                     Clear Filters
-
                 </button>
-
             </div>
 
             <div className="filters-row">
-
                 <div className="filter-group">
-
                     <label>User Type</label>
 
-                    <select>
-                        <option>All</option>
-                        <option>Student</option>
-                        <option>Content Creator</option>
-                        <option>Administrator</option>
+                    <select
+                        value={filters.role}
+                        onChange={(e) =>
+                            onFilterChange("role", e.target.value)
+                        }
+                    >
+                        <option value="ALL">All</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="CONTENT_CREATOR">
+                            Content Creator
+                        </option>
+                        <option value="ADMIN">Administrator</option>
                     </select>
                 </div>
 
                 <div className="filter-group">
-
                     <label>Status</label>
 
-                    <select>
-                        <option>Status</option>
-                        <option>All</option>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Suspended</option>
-                    </select>
-
-                </div>
-
-                <div className="filter-group">
-
-                    <label>Grade</label>
-
-                    <select>
-                        <option>Grade</option>
-                        <option>All</option>
-                        <option>Grade 3</option>
-                        <option>Grade 4</option>
-                        <option>Grade 5</option>
-                        <option>Grade 6</option>
-                        <option>Grade 7</option>
-                        <option>Grade 8</option>
-                        <option>Grade 9</option>
+                    <select
+                        value={filters.status}
+                        onChange={(e) =>
+                            onFilterChange("status", e.target.value)
+                        }
+                    >
+                        <option value="ALL">All</option>
+                        <option value="ACTIVE">Active</option>
+                        <option value="PENDING_VERIFICATION">
+                            Pending Verification
+                        </option>
+                        <option value="INACTIVE">Inactive</option>
+                        <option value="SUSPENDED">Suspended</option>
                     </select>
                 </div>
-
             </div>
-
         </div>
-
     );
-
 }
-
 
 export default UserFilters;
