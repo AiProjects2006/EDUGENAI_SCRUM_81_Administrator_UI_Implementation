@@ -46,12 +46,12 @@
     width:48px;
     height:48px;
     border-radius:12px;
-    background:linear-gradient(135deg,#8B5CF6,#EC4899);
+    background:linear-gradient(135deg, #1B1030 0%, #4C1D95 100%);
     display:flex;
     justify-content:center;
     align-items:center;
     color:white;
-    box-shadow:0 6px 15px rgba(139,92,246,.35);
+    box-shadow:0 6px 15px rgba(27, 16, 48, 0.4);
 }
 
 .logo h2{
@@ -107,10 +107,10 @@
 
 /* Active Menu */
 .sidebar a.active {
-    background: linear-gradient(135deg,#8B3EE0,#C026D3);
+    background: linear-gradient(135deg, #1B1030 0%, #3B0764 50%, #581C87 100%);
     color: white;
     font-weight: 600;
-    box-shadow: 0 8px 18px rgba(168,85,247,0.35);
+    box-shadow: 0 8px 18px rgba(27, 16, 48, 0.45);
 }
 
 .sidebar a.active svg {
@@ -145,7 +145,7 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background: #6D28D9;
+    background: #4C1D95;
     border-radius: 10px;
 }
 
@@ -154,13 +154,9 @@
 }
 
 .sidebar-footer{
-
     border-top:1px solid rgba(255,255,255,.12);
-
     padding-top:20px;
-
     margin-top:auto;
-
 }
 
 .profile{
@@ -175,11 +171,10 @@
     height:48px;
     border-radius:50%;
     object-fit:cover;
-    border:2px solid #a855f7;
+    border:2px solid #581C87;
 }
 
 .profile h4{
-
     margin:0;
     font-size:15px;
     color:white;
@@ -192,33 +187,25 @@
 }
 
 .logout-btn{
-
     width:100%;
     height:45px;
-
     border:none;
     border-radius:10px;
-
-    background:#a855f7;
+    background: linear-gradient(135deg, #1B1030 0%, #3B0764 50%, #581C87 100%);
     color:#fff;
-
     display:flex;
     justify-content:center;
     align-items:center;
     gap:10px;
-
     cursor:pointer;
     font-weight:600;
     font-size:14px;
-
+    box-shadow: 0 4px 12px rgba(27, 16, 48, 0.35);
     transition:.3s;
-
 }
 
 .logout-btn:hover{
-
-    background:#9333ea;
-
+    background: linear-gradient(135deg, #0F081C 0%, #1B1030 50%, #3B0764 100%);
 }
 
 .menu-with-submenu {
@@ -242,7 +229,8 @@
 }
 
 .submenu a.active {
-    background: rgba(168, 85, 247, 0.15);
+    background: rgba(88, 28, 135, 0.4);
+    border-left: 3px solid #C4B5FD;
     color: #fff;
     box-shadow: none;
 }

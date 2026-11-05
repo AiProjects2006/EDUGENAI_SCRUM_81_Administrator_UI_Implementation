@@ -1,57 +1,65 @@
 .pagination{
-    margin-top:25px;
+    margin-top:24px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    font-family:'Poppins', sans-serif;
 }
 
 .page-btn{
     display:flex;
     align-items:center;
     gap:8px;
-    padding:10px 18px;
+    padding:9px 18px;
 
-    background:#f3e8ff;
-    color:#9333ea;
+    background:#F8F5FD;
+    color:#6D28D9;
 
-    border:1px solid #e9d5ff;
+    border:1px solid #ECE8FF;
     border-radius:10px;
 
     cursor:pointer;
-    font-size:14px;
+    font-size:0.86rem;
     font-weight:600;
+    font-family:'Poppins', sans-serif;
 
-    transition:0.3s;
+    transition:all 0.2s ease;
 }
 
 .page-btn:hover{
-    background:#e9d5ff;
-    border-color:#c084fc;
-    color:#7e22ce;
+    background:#F3EEFF;
+    border-color:#DDD6FE;
+    color:#7C3AED;
 }
 
 .page-numbers{
     display:flex;
-    gap:10px;
+    gap:8px;
 }
 
 .page-number{
     width:38px;
     height:38px;
-    border:none;
+    border:1px solid #ECE8FF;
     border-radius:10px;
-    background:#f3f4f6;
+    background:#F8F5FD;
+    color:#6D28D9;
     cursor:pointer;
     font-weight:600;
-    transition:.3s;
+    font-size:0.86rem;
+    font-family:'Poppins', sans-serif;
+    transition:all 0.2s ease;
 }
 
 .page-number:hover{
-    background:#ede9fe;
-    color:#9333ea;
+    background:#F3EEFF;
+    border-color:#DDD6FE;
+    color:#7C3AED;
 }
 
 .page-number.active{
-    background:#9333ea;
+    background:linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+    border-color:transparent;
     color:#ffffff;
+    box-shadow:0 3px 10px rgba(124, 58, 237, 0.35);
 }

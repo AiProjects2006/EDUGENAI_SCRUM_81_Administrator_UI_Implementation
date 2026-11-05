@@ -1,0 +1,334 @@
+/* ==========================================================================
+   AdminAuth.css - Administrator Authentication Styling
+   Common Purple Theme: Primary #7C3AED, Gradient #7C3AED -> #9333EA,
+   Deep Purple Text #24143D, Background #F8F6FF
+   Font: 'Poppins', sans-serif
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --common-purple: #7C3AED;
+  --common-purple-hover: #6D28D9;
+  --common-purple-gradient: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+  --common-purple-dark: #24143D;
+  --common-purple-subtle: #F3EEFF;
+  --common-purple-border: #ECE8FF;
+  --common-purple-border-subtle: #DDD6FE;
+  --common-purple-muted: #7B6C92;
+  --common-bg: #F8F6FF;
+}
+
+.admin-auth-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #F8F6FF;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(243, 238, 255, 0.45) 0px, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.admin-auth-container {
+  width: 100%;
+  max-width: 480px;
+  background: #FFFFFF;
+  border: 1px solid #ECE8FF;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 45px rgba(124, 58, 237, 0.09), 0 4px 12px rgba(0, 0, 0, 0.03);
+  position: relative;
+  box-sizing: border-box;
+  animation: adminAuthCardFadeIn 0.35s ease-out;
+}
+
+@keyframes adminAuthCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-brand-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* Logo icon matching Common Purple */
+.admin-logo-icon {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+  color: #FFFFFF;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px auto;
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.35);
+}
+
+.admin-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F3EEFF;
+  color: #7C3AED;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  border: 1px solid #DDD6FE;
+}
+
+.admin-title {
+  color: #24143D;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.3px;
+}
+
+.admin-subtitle {
+  color: #7B6C92;
+  font-size: 0.92rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.input-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #24143D;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-left {
+  position: absolute;
+  left: 14px;
+  color: #9C8EB9;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1.5px solid #ECE8FF;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  color: #24143D;
+  background: #FCFAFF;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #7C3AED;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #9C8EB9;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.password-toggle-btn:hover {
+  color: #7C3AED;
+}
+
+/* Demo Quickfill Bar */
+.admin-quickfill-bar {
+  background: #F8F5FD;
+  border: 1px dashed #DDD6FE;
+  border-radius: 10px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.admin-quickfill-bar span {
+  font-size: 0.8rem;
+  color: #6D28D9;
+  font-weight: 500;
+}
+
+.btn-admin-quickfill {
+  background: #7C3AED;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-admin-quickfill:hover {
+  background: #6D28D9;
+}
+
+/* Primary Action Button */
+.btn-admin-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.35);
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+.btn-admin-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #6D28D9 0%, #7E22CE 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(124, 58, 237, 0.42);
+}
+
+.btn-admin-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.admin-auth-alert {
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.admin-auth-alert.error {
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  color: #DC2626;
+}
+
+.admin-auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-portal-divider {
+  display: flex;
+  align-items: center;
+  color: #9C8EB9;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  gap: 8px;
+}
+
+.admin-portal-divider::before,
+.admin-portal-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ECE8FF;
+}
+
+.admin-portal-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-portal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #6D28D9;
+  background: #F8F5FD;
+  border: 1px solid #ECE8FF;
+  padding: 5px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.admin-portal-pill:hover {
+  color: #7C3AED;
+  border-color: #DDD6FE;
+  background: #F3EEFF;
+}
+
+.admin-security-badge {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7B6C92;
+  font-size: 0.78rem;
+}
+
+.admin-security-badge svg {
+  color: #7C3AED;
+}
