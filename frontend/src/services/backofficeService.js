@@ -60,7 +60,27 @@ const broadcastCourseChange = (type = 'COURSES_UPDATED', payload = null) => {
 const isJwtToken = (tok) => {
   if (!tok || typeof tok !== 'string') return false;
   const parts = tok.split('.');
-  return parts.length === 3 && parts[0].length > 10;
+  if (parts.length !== 3 || parts[0].length < 8) return false;
+  try {
+    const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+    const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+    const payload = JSON.parse(atob(padded));
+    if (payload && typeof payload.exp === 'number' && payload.exp * 1000 <= Date.now() + 15000) {
+      return false;
+    }
+    return true;
+  } catch (_) {
+    return false;
+  }
+};
+
+const clearInvalidBearerToken = () => {
+  try {
+    const raw = localStorage.getItem('access_token');
+    if (raw && raw.split('.').length === 3) {
+      localStorage.setItem('access_token', 'session_active');
+    }
+  } catch (_) {}
 };
 
 const getStoredLocalCourses = () => {
@@ -135,14 +155,49 @@ const normalizeAdminCourse = (c) => {
 const requestBackoffice = async (endpoint, options = {}) => {
   const token = localStorage.getItem('access_token');
   const validToken = isJwtToken(token) ? token : null;
-  const isMutation = options.method && options.method.toUpperCase() !== 'GET';
+  if (!validToken && token && token.split('.').length === 3) {
+    clearInvalidBearerToken();
+  }
   const headers = {
     'Content-Type': 'application/json',
-    ...(isMutation && validToken ? { Authorization: `Bearer ${validToken}` } : {}),
+    ...(validToken ? { Authorization: `Bearer ${validToken}` } : {}),
     ...(options.headers || {})
   };
 
-  // Primary: Direct Backoffice API port 8086 as per system architecture diagram
+  const isMutation = options.method && options.method.toUpperCase() !== 'GET';
+
+  // Primary: API Gateway (:8087) -> Backoffice API (:8086) per system architecture diagram
+  try {
+    let res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
+      ...options,
+      headers
+    });
+
+    if (res.status === 401 && headers.Authorization) {
+      clearInvalidBearerToken();
+      const retryHeaders = { ...headers };
+      delete retryHeaders.Authorization;
+      res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
+        ...options,
+        headers: retryHeaders
+      });
+    }
+
+    if (res.ok) {
+      const json = await res.json().catch(() => ({}));
+      return json && json.data !== undefined ? json.data : json;
+    }
+    if (isMutation && res.status < 500) {
+      const errJson = await res.json().catch(() => null);
+      throw new Error((errJson && errJson.message) || `Request failed with status ${res.status}`);
+    }
+  } catch (gatewayErr) {
+    if (isMutation && !gatewayErr.message?.includes('Failed to fetch') && !gatewayErr.message?.includes('NetworkError')) {
+      throw gatewayErr;
+    }
+  }
+
+  // Offline Fallback: Direct Backoffice API (:8086) if API Gateway container is down
   try {
     let res = await fetch(`${BACKOFFICE_URL}/api/v1/backoffice${endpoint}`, {
       ...options,
@@ -159,50 +214,20 @@ const requestBackoffice = async (endpoint, options = {}) => {
     }
 
     if (res.ok) {
-      const json = await res.json();
-      return json.data !== undefined ? json.data : json;
-    }
-    if (isMutation && res.status < 500) {
-      const errJson = await res.json().catch(() => null);
-      throw new Error((errJson && errJson.message) || `Request failed with status ${res.status}`);
-    }
-  } catch (backofficeErr) {
-    if (isMutation && !backofficeErr.message?.includes('Failed to fetch') && !backofficeErr.message?.includes('NetworkError')) {
-      throw backofficeErr;
-    }
-  }
-
-  // Fallback: via API Gateway
-  try {
-    let res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
-      ...options,
-      headers
-    });
-
-    if (res.status === 401 && headers.Authorization) {
-      const retryHeaders = { ...headers };
-      delete retryHeaders.Authorization;
-      res = await fetch(`${GATEWAY_URL}/api/v1/backoffice${endpoint}`, {
-        ...options,
-        headers: retryHeaders
-      });
-    }
-
-    if (res.ok) {
-      const json = await res.json();
-      return json.data !== undefined ? json.data : json;
+      const json = await res.json().catch(() => ({}));
+      return json && json.data !== undefined ? json.data : json;
     }
     const errJson = await res.json().catch(() => null);
     throw new Error((errJson && errJson.message) || `Request failed with status ${res.status}`);
-  } catch (gatewayErr) {
-    throw new Error(gatewayErr.message || 'Backoffice API currently unreachable');
+  } catch (backofficeErr) {
+    throw new Error(backofficeErr.message || 'Backoffice API currently unreachable');
   }
 };
 
 export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
   let combined = [];
 
-  // 1. Try Backoffice API
+  // 1. Fetch via API Gateway (:8087) -> Backoffice API (:8086) -> Course Service (:8082) + Enrollment Service (:8084)
   try {
     const params = new URLSearchParams();
     if (status) params.append('status', status);
@@ -217,21 +242,7 @@ export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
     console.warn('Backoffice API request skipped/failed in Admin UI:', err.message);
   }
 
-  // 2. Supplement from Course Service
-  try {
-    const csRes = await fetch(`${GATEWAY_URL}/api/v1/courses`).catch(() =>
-      fetch('http://localhost:8082/api/v1/courses')
-    );
-    if (csRes && csRes.ok) {
-      const csJson = await csRes.json();
-      const csList = Array.isArray(csJson) ? csJson : csJson.data || [];
-      if (Array.isArray(csList) && csList.length > 0) {
-        combined = [...combined, ...csList];
-      }
-    }
-  } catch (_) { }
-
-  // 3. Supplement from localStorage
+  // 2. Supplement from localStorage cache when offline
   const local = getStoredLocalCourses();
   if (Array.isArray(local) && local.length > 0) {
     combined = [...local, ...combined];
@@ -322,4 +333,55 @@ export const fetchCourseStatsFromBackoffice = async () => {
     pendingCourses: all.filter((c) => (c.status || '').toLowerCase() === 'pending' || (c.status || '').toLowerCase() === 'draft').length,
     archivedCourses: all.filter((c) => (c.status || '').toLowerCase() === 'archived').length
   };
+};
+
+/**
+ * BFF Platform Overview (Gateway -> Backoffice API -> User + Course + Activity + Enrollment Services)
+ */
+export const fetchBackofficeOverview = async () => {
+  return requestBackoffice('/overview');
+};
+
+/**
+ * BFF User Management (Gateway -> Backoffice API -> User Service)
+ */
+export const fetchBackofficeUsers = async (role = '') => {
+  const qs = role ? `?role=${encodeURIComponent(role)}` : '';
+  const data = await requestBackoffice(`/users${qs}`);
+  return Array.isArray(data) ? data : [];
+};
+
+export const registerBackofficeUser = async (userPayload) => {
+  return requestBackoffice('/users/register', {
+    method: 'POST',
+    body: JSON.stringify(userPayload)
+  });
+};
+
+export const updateBackofficeUser = async (id, userPayload) => {
+  return requestBackoffice(`/users/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(userPayload)
+  });
+};
+
+export const updateBackofficeUserStatus = async (id, status) => {
+  return requestBackoffice(`/users/${id}/status`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status })
+  });
+};
+
+export const deleteBackofficeUser = async (id) => {
+  return requestBackoffice(`/users/${id}`, {
+    method: 'DELETE'
+  });
+};
+
+/**
+ * BFF Enrollments (Gateway -> Backoffice API -> Enrollment Service)
+ */
+export const fetchBackofficeEnrollments = async () => {
+  const data = await requestBackoffice('/enrollments');
+  return Array.isArray(data) ? data : [];
 };

@@ -1,10 +1,11 @@
 /**
  * creatorManagementService.js
  * Admin API service for Content Creator approval, review, and provisioning
+ * Routed via API Gateway (:8087) -> Backoffice API (:8086) -> User Service (:8081)
  */
 
-const USER_SERVICE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
 const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL || 'http://localhost:8087';
+const BACKOFFICE_URL = import.meta.env.VITE_BACKOFFICE_URL || 'http://localhost:8086';
 
 // Initial fallback creators for offline / mock testing
 const INITIAL_CREATORS = [
@@ -80,6 +81,16 @@ const INITIAL_CREATORS = [
 
 const LOCAL_STORAGE_KEY = 'edugenai_admin_creators_cache';
 
+function buildAuthHeaders(extra = {}) {
+  const token = localStorage.getItem('access_token');
+  const isJwt = typeof token === 'string' && token.split('.').length === 3;
+  return {
+    Accept: 'application/json',
+    ...(isJwt ? { Authorization: `Bearer ${token}` } : {}),
+    ...extra
+  };
+}
+
 function getCachedCreators() {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -95,24 +106,25 @@ function setCachedCreators(creators) {
 }
 
 /**
- * Fetch all content creators from User Service backend
+ * Fetch all content creators via API Gateway (:8087) -> Backoffice API (:8086) -> User Service (:8081)
  */
 export async function getCreators() {
   const endpoints = [
-    'http://localhost:8081/api/users?role=CONTENT_CREATOR',
-    `${USER_SERVICE_URL.replace(/\/api\/?$/, '')}/api/users?role=CONTENT_CREATOR`,
+    `${GATEWAY_URL}/api/v1/backoffice/users?role=CONTENT_CREATOR`,
+    `${BACKOFFICE_URL}/api/v1/backoffice/users?role=CONTENT_CREATOR`,
     `${GATEWAY_URL}/api/users?role=CONTENT_CREATOR`
   ];
 
   for (const url of endpoints) {
     try {
-      const resp = await fetch(url, {
-        headers: { 'Accept': 'application/json' }
-      });
+      let resp = await fetch(url, { headers: buildAuthHeaders() });
+      if (resp.status === 401) {
+        resp = await fetch(url, { headers: { Accept: 'application/json' } });
+      }
       if (resp.ok) {
-        const data = await resp.json();
+        const raw = await resp.json();
+        const data = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.data) ? raw.data : null);
         if (Array.isArray(data)) {
-          // Merge with any local mock additions
           const cached = getCachedCreators();
           const merged = [...data];
           for (const item of cached) {
@@ -125,7 +137,7 @@ export async function getCreators() {
         }
       }
     } catch (_) {
-      // Continue to next endpoint or fallback
+      // Continue to next endpoint or offline cache
     }
   }
 
@@ -134,22 +146,30 @@ export async function getCreators() {
 
 /**
  * Update a Content Creator's account status (ACTIVE, SUSPENDED, PENDING_VERIFICATION)
+ * via API Gateway (:8087) -> Backoffice API (:8086) -> User Service (:8081)
  */
 export async function updateCreatorStatus(creatorId, newStatus) {
   const endpoints = [
-    `http://localhost:8081/api/users/${creatorId}/status`,
-    `${USER_SERVICE_URL.replace(/\/api\/?$/, '')}/api/users/${creatorId}/status`,
+    `${GATEWAY_URL}/api/v1/backoffice/users/${creatorId}/status`,
+    `${BACKOFFICE_URL}/api/v1/backoffice/users/${creatorId}/status`,
     `${GATEWAY_URL}/api/users/${creatorId}/status`
   ];
 
   let updatedServer = false;
   for (const url of endpoints) {
     try {
-      const resp = await fetch(url, {
+      let resp = await fetch(url, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ status: newStatus })
       });
+      if (resp.status === 401) {
+        resp = await fetch(url, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+      }
       if (resp.ok) {
         updatedServer = true;
         break;
@@ -157,7 +177,6 @@ export async function updateCreatorStatus(creatorId, newStatus) {
     } catch (_) {}
   }
 
-  // Update local cache
   const cached = getCachedCreators();
   const updatedList = cached.map(c => c.id === creatorId ? { ...c, accountStatus: newStatus } : c);
   setCachedCreators(updatedList);
@@ -167,6 +186,7 @@ export async function updateCreatorStatus(creatorId, newStatus) {
 
 /**
  * Directly provision and register a Content Creator by Admin
+ * via API Gateway (:8087) -> Backoffice API (:8086) -> User Service (:8081)
  */
 export async function addCreatorDirectly(creatorData) {
   const payload = {
@@ -177,7 +197,7 @@ export async function addCreatorDirectly(creatorData) {
     password: creatorData.password || 'Creator@123',
     contactNumber: creatorData.contactNumber || '0770000000',
     role: 'CONTENT_CREATOR',
-    accountStatus: 'ACTIVE', // Admin created creators are immediately active
+    accountStatus: 'ACTIVE',
     qualifications: creatorData.qualifications || '',
     experienceYears: creatorData.experienceYears ? parseInt(creatorData.experienceYears, 10) : 3,
     preferredSubjects: creatorData.preferredSubjects || '',
@@ -187,8 +207,8 @@ export async function addCreatorDirectly(creatorData) {
   };
 
   const endpoints = [
-    'http://localhost:8081/api/users/register',
-    `${USER_SERVICE_URL.replace(/\/api\/?$/, '')}/api/users/register`,
+    `${GATEWAY_URL}/api/v1/backoffice/users/register`,
+    `${BACKOFFICE_URL}/api/v1/backoffice/users/register`,
     `${GATEWAY_URL}/api/users/register`
   ];
 
@@ -197,12 +217,12 @@ export async function addCreatorDirectly(creatorData) {
     try {
       const resp = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify(payload)
       });
       if (resp.ok) {
         const body = await resp.json();
-        serverCreator = body.user;
+        serverCreator = body.user || body.data || null;
         break;
       }
     } catch (_) {}
@@ -226,4 +246,3 @@ export default {
   updateCreatorStatus,
   addCreatorDirectly
 };
-

@@ -7,7 +7,7 @@ const KEYCLOAK_URL = import.meta.env.VITE_KEYCLOAK_URL || 'http://localhost:8090
 const KEYCLOAK_REALM = import.meta.env.VITE_KEYCLOAK_REALM || 'ai-learning-platform';
 const KEYCLOAK_CLIENT_ID = import.meta.env.VITE_KEYCLOAK_CLIENT_ID || 'edugenai-frontend';
 const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL || 'http://localhost:8087';
-const USER_SERVICE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
+const BACKOFFICE_URL = import.meta.env.VITE_BACKOFFICE_URL || 'http://localhost:8086';
 
 /**
  * Safely parse a base64 encoded JWT payload
@@ -111,11 +111,10 @@ export async function loginAdmin({ usernameOrEmail, password }) {
     };
   }
 
-  // 3. Fallback: Authenticate via User Service (:8081) directly or API Gateway (:8087)
+  // 3. Fallback: Authenticate via API Gateway (:8087) -> Backoffice API (:8086) -> User Service (:8081)
   const endpoints = [
-    'http://localhost:8081/api/users/login',
-    'http://localhost:8081/api/auth/login',
-    `${USER_SERVICE_URL.replace(/\/api\/?$/, '')}/api/users/login`,
+    `${GATEWAY_URL}/api/v1/backoffice/auth/login`,
+    `${BACKOFFICE_URL}/api/v1/backoffice/auth/login`,
     `${GATEWAY_URL}/api/users/login`
   ];
 
@@ -186,9 +185,8 @@ export async function loginAdmin({ usernameOrEmail, password }) {
 
 async function syncSessionWithBackend(accessToken, refreshToken) {
   const syncUrls = [
-    'http://localhost:8081/api/users/keycloak-sync',
-    'http://localhost:8081/api/auth/keycloak-sync',
-    `${USER_SERVICE_URL.replace(/\/api\/?$/, '')}/api/users/keycloak-sync`,
+    `${GATEWAY_URL}/api/v1/backoffice/auth/keycloak-sync`,
+    `${BACKOFFICE_URL}/api/v1/backoffice/auth/keycloak-sync`,
     `${GATEWAY_URL}/api/users/keycloak-sync`
   ];
   for (const url of syncUrls) {

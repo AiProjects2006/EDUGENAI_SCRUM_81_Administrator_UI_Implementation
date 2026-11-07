@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import BackofficeLayout from "../../../components/layout/BackofficeLayout.jsx";
 
 import { moderationContent } from "./data/ContentData";
+import {
+    fetchCoursesFromBackoffice,
+    updateCourseStatusInBackoffice
+} from "../../../services/backofficeService.js";
 
 import ModerationStats from "./ModerationStats/ModerationStats";
 import ModerationFilters from "./ModerationFilters/ModerationFilters";
@@ -36,6 +40,38 @@ function ContentModeration() {
     });
 
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        let active = true;
+        fetchCoursesFromBackoffice()
+            .then((courses) => {
+                if (!active || !Array.isArray(courses) || courses.length === 0) return;
+                const mappedCourses = courses.map((c) => ({
+                    id: `COURSE-${c.courseId || c.id}`,
+                    courseBackendId: c.courseId || c.id,
+                    title: c.title,
+                    type: "Uploaded Content",
+                    subject: c.subject || "Curriculum",
+                    date: c.date || new Date().toLocaleDateString(),
+                    status: c.status === "Approved" || c.status === "Published" ? "Approved" : "Pending",
+                    grade: c.grade || "Grade 3",
+                    difficulty: "Medium",
+                    creator: c.creator || "Content Creator",
+                    question: c.description || "",
+                    options: [],
+                    correctAnswer: ""
+                }));
+                setContentList((prev) => {
+                    const existingIds = new Set(prev.map((i) => i.id));
+                    const fresh = mappedCourses.filter((m) => !existingIds.has(m.id));
+                    return fresh.length > 0 ? [...fresh, ...prev] : prev;
+                });
+            })
+            .catch(() => {});
+        return () => {
+            active = false;
+        };
+    }, []);
 
     const contentPerPage = 10;
 
@@ -98,7 +134,10 @@ function ContentModeration() {
             startIndex + contentPerPage
         );
 
-    const handleApprove = (content) => {
+    const handleApprove = async (content) => {
+        if (content.courseBackendId) {
+            await updateCourseStatusInBackoffice(content.courseBackendId, "Approved").catch(() => {});
+        }
 
         const updatedContent = {
             ...content,
@@ -120,7 +159,10 @@ function ContentModeration() {
         setRejectContent(content);
     };
 
-    const handleRejectSubmit = (updatedContent) => {
+    const handleRejectSubmit = async (updatedContent) => {
+        if (updatedContent.courseBackendId) {
+            await updateCourseStatusInBackoffice(updatedContent.courseBackendId, "Archived").catch(() => {});
+        }
 
         setContentList((previousContent) =>
             previousContent.map((item) =>
