@@ -1,0 +1,45 @@
+.user-stat-card{
+    background:#ffffff;
+    border:1px solid #ECE8FF;
+    border-radius:16px;
+    padding:22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 4px 14px rgba(124, 58, 237, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+    font-family:'Poppins', sans-serif;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-stat-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(124, 58, 237, 0.09);
+}
+
+.user-stat-info p{
+    margin:0;
+    font-size:0.8rem;
+    color:#7B6C92;
+    text-transform:uppercase;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+
+.user-stat-info h2{
+    margin:8px 0 0 0;
+    font-size:1.85rem;
+    font-weight:700;
+    color:#24143D;
+}
+
+.user-stat-icon{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    background:#F3EEFF;
+    color:#7C3AED;
+    border:1px solid #DDD6FE;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
