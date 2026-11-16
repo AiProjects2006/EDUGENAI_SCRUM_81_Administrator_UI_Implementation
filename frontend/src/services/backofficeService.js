@@ -204,7 +204,17 @@ export const fetchCoursesFromBackoffice = async (status = '', search = '') => {
     if (search) params.append('search', search);
 
     const qs = params.toString() ? `?${params.toString()}` : '';
-    const data = await requestBackoffice(`/courses${qs}`);
+
+    const response = await fetch(
+        "http://localhost:8084/api/backoffice/dashboard/creator/courses"
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch courses: ${response.status}`);
+    }
+
+    const data = await response.json();
+
     if (Array.isArray(data) && data.length > 0) {
       combined = [...combined, ...data];
     }
@@ -320,37 +330,92 @@ export const fetchUsersFromBackoffice = async () => {
 };
 
 export async function createUserInBackoffice(userData) {
-  const response = await fetch(
-      "http://localhost:8084/api/backoffice/dashboard/creator/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userData)
-      }
-  );
+  let response;
+
+  try {
+    response = await fetch(
+        "http://localhost:8084/api/backoffice/dashboard/creator/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+    );
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(
+          "Unable to connect to the server. Please try again."
+      );
+    }
+
+    throw error;
+  }
 
   if (!response.ok) {
-    throw new Error("Failed to create user");
+    if (response.status === 409) {
+      const errorData = await response.json();
+      const message = String(errorData.message || "");
+
+      if (message.includes("Username and email already exist")) {
+        throw new Error("Username and email already exist.");
+      }
+
+      if (message.includes("Username already exists")) {
+        throw new Error("Username already exists.");
+      }
+
+      if (message.includes("Email already exists")) {
+        throw new Error("Email already exists.");
+      }
+    }
+
+    throw new Error("Failed to create user.");
   }
 
   return await response.json();
 }
 
 export async function updateUserInBackoffice(userId, userData) {
-  const response = await fetch(
-      `http://localhost:8084/api/backoffice/dashboard/creator/users/${userId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }
-  );
+  let response;
+
+  try {
+    response = await fetch(
+        `http://localhost:8084/api/backoffice/dashboard/creator/users/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+    );
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(
+          "Unable to connect to the server. Please try again."
+      );
+    }
+
+    throw error;
+  }
 
   if (!response.ok) {
+    const errorText = await response.text();
+    let message = "";
+
+    try {
+      const errorData = JSON.parse(errorText);
+      message = String(errorData.message || "");
+    } catch {
+      message = errorText;
+    }
+
+    if (message.includes("Email already exists")) {
+      throw new Error("Email already exists.");
+    }
+
     throw new Error(`Failed to update user: ${response.status}`);
   }
 
@@ -358,18 +423,40 @@ export async function updateUserInBackoffice(userId, userData) {
 }
 
 export async function deleteUserFromBackoffice(userId) {
-  const response = await fetch(
-      `http://localhost:8084/api/backoffice/dashboard/creator/users/${userId}`,
-      {
-        method: "DELETE"
+  try {
+    const response = await fetch(
+        `http://localhost:8084/api/backoffice/dashboard/creator/users/${userId}`,
+        {
+          method: "DELETE"
+        }
+    );
+
+    if (!response.ok) {
+      let message = "";
+
+      try {
+        const errorData = await response.json();
+        message = String(errorData.message || "");
+      } catch {
+        // Response body may be empty or not JSON.
       }
-  );
 
-  if (!response.ok) {
-    throw new Error(`Failed to delete user: ${response.status}`);
+      throw new Error(
+          message || `Failed to delete user: ${response.status}`
+      );
+    }
+
+    return true;
+
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(
+          "Unable to connect to the server. Please try again."
+      );
+    }
+
+    throw error;
   }
-
-  return true;
 }
 
 export async function fetchEnrollmentStatsFromBackoffice() {

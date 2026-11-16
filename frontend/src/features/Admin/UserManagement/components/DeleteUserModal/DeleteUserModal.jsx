@@ -1,25 +1,26 @@
 import "./DeleteUserModal.css";
 import { Trash2, X } from "lucide-react";
 
-function DeleteUserModal({ user, onCancel, onConfirm }) {
-
+function DeleteUserModal({
+                             user,
+                             onCancel,
+                             onConfirm,
+                             isDeleting = false
+                         }) {
     return (
-
         <div className="delete-modal-overlay">
-
             <div className="delete-modal">
 
                 <button
                     className="delete-close"
                     onClick={onCancel}
+                    disabled={isDeleting}
                 >
                     <X size={20} />
                 </button>
 
                 <div className="delete-icon">
-
                     <Trash2 size={34} />
-
                 </div>
 
                 <h2>Delete User</h2>
@@ -38,6 +39,7 @@ function DeleteUserModal({ user, onCancel, onConfirm }) {
                     <button
                         className="cancel-delete"
                         onClick={onCancel}
+                        disabled={isDeleting}
                     >
                         Cancel
                     </button>
@@ -45,18 +47,15 @@ function DeleteUserModal({ user, onCancel, onConfirm }) {
                     <button
                         className="confirm-delete"
                         onClick={() => onConfirm(user.id)}
+                        disabled={isDeleting}
                     >
-                        Delete User
+                        {isDeleting ? "Deleting..." : "Delete User"}
                     </button>
 
                 </div>
-
             </div>
-
         </div>
-
     );
-
 }
 
 export default DeleteUserModal;

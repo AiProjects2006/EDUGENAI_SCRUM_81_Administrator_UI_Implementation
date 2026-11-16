@@ -1,12 +1,18 @@
-
 import "./UserStats.css";
 
-function UserStats({ title, value, icon: Icon }) {
+function UserStats({ title, value, icon: Icon, isError = false }) {
     return (
         <div className="user-stat-card">
             <div className="user-stat-info">
                 <p>{title}</p>
-                <h2>{value}</h2>
+
+                {isError ? (
+                    <span className="user-stat-error">
+                        Unable to load
+                    </span>
+                ) : (
+                    <h2>{value}</h2>
+                )}
             </div>
 
             <div className="user-stat-icon">

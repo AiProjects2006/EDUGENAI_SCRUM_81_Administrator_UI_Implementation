@@ -25,6 +25,37 @@ function AnalyticsChart() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    const renderMetric = (value) => {
+        if (loading) {
+            return (
+                <span style={{ fontSize: "14px", color: "#888" }}>
+                Loading...
+            </span>
+            );
+        }
+
+        if (error) {
+            return (
+                <span
+                    style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        padding: "6px 10px",
+                        fontSize: "12px",
+                        fontWeight: 500,
+                        color: "#dc2626",
+                        backgroundColor: "#fef2f2",
+                        borderRadius: "6px",
+                    }}
+                >
+            Unable to load
+        </span>
+            );
+        }
+
+        return value ?? "—";
+    };
+
     useEffect(() => {
         const loadAnalytics = async () => {
             try {
@@ -117,17 +148,17 @@ function AnalyticsChart() {
             <div className="analytics-metrics">
                 <div>
                     <p>TOTAL ACTIVITIES</p>
-                    <h2>{stats?.totalActivities ?? "—"}</h2>
+                    <h2>{renderMetric(stats?.totalActivities)}</h2>
                 </div>
 
                 <div>
                     <p>PUBLISHED</p>
-                    <h2>{stats?.publishedActivities ?? "—"}</h2>
+                    <h2>{renderMetric(stats?.publishedActivities)}</h2>
                 </div>
 
                 <div>
                     <p>DRAFT</p>
-                    <h2>{stats?.draftActivities ?? "—"}</h2>
+                    <h2>{renderMetric(stats?.draftActivities)}</h2>
                 </div>
             </div>
 

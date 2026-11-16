@@ -53,7 +53,7 @@ function UserTable() {
             toast.success("User created successfully!");
         } catch (err) {
             console.error("Failed to create user:", err);
-            toast.error("Failed to create user.");
+            toast.error(err.message || "Failed to create user.");
         }
     };
 

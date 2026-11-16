@@ -89,8 +89,11 @@ function Users() {
 
         } catch (error) {
             console.error("Failed to create user:", error);
-            toast.error("Failed to create user. Please try again.");
+            toast.error(
+                error.message || "Failed to create user. Please try again."
+            );
         }
+
     };
 
     const handleEditUser = (user) => {
@@ -116,7 +119,7 @@ function Users() {
 
         } catch (error) {
             console.error("Failed to update user:", error);
-            toast.error("Failed to update user. Please try again.");
+            toast.error(error.message || "Failed to update user. Please try again.");
         }
     };
 
@@ -141,8 +144,9 @@ function Users() {
 
         } catch (error) {
             console.error("Failed to delete user:", error);
-            toast.error("Failed to delete user. Please try again.");
-
+            toast.error(
+                error.message || "Failed to delete user. Please try again."
+            );
         } finally {
             setDeletingId(null);
         }
@@ -162,25 +166,32 @@ function Users() {
         (user) => user.accountStatus === "ACTIVE"
     ).length;
 
+
+    const getStatValue = (count) => {
+        if (loading) return "Loading...";
+        if (error) return "Unavailable";
+        return count.toLocaleString();
+    };
+
     const userStats = [
         {
             title: "Total Users",
-            value: totalUsers.toLocaleString(),
+            value: getStatValue(totalUsers),
             icon: UsersRound
         },
         {
             title: "Total Students",
-            value: totalStudents.toLocaleString(),
+            value: getStatValue(totalStudents),
             icon: GraduationCap
         },
         {
             title: "Content Creators",
-            value: totalCreators.toLocaleString(),
+            value: getStatValue(totalCreators),
             icon: BookOpen
         },
         {
             title: "Active Users",
-            value: activeUsers.toLocaleString(),
+            value: getStatValue(activeUsers),
             icon: UserCheck
         }
     ];
@@ -285,6 +296,7 @@ function Users() {
                             title={stat.title}
                             value={stat.value}
                             icon={stat.icon}
+                            isError={Boolean(error)}
                         />
 
                     ))}
@@ -330,13 +342,12 @@ function Users() {
             )}
 
             {deleteUser && (
-
                 <DeleteUserModal
                     user={deleteUser}
                     onCancel={() => setDeleteUser(null)}
                     onConfirm={confirmDeleteUser}
+                    isDeleting={deletingId === deleteUser.id}
                 />
-
             )}
 
         </BackofficeLayout>

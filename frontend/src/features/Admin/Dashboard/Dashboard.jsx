@@ -15,8 +15,12 @@ function Dashboard() {
 
     const [activeStudents, setActiveStudents] = useState(null);
     const [totalUsers, setTotalUsers] = useState(null);
+    const [usersError, setUsersError] = useState(false);
     const [totalCourses, setTotalCourses] = useState(null);
     const [totalActivities, setTotalActivities] = useState(null);
+    const [studentsError, setStudentsError] = useState(false);
+    const [coursesError, setCoursesError] = useState(false);
+    const [activitiesError, setActivitiesError] = useState(false);
 
     useEffect(() => {
         const loadDashboardUsers = async () => {
@@ -25,6 +29,7 @@ function Dashboard() {
                 setTotalUsers(users.length);
             } catch (error) {
                 console.error("Failed to load users:", error);
+                setUsersError(true);
             }
         };
 
@@ -38,6 +43,7 @@ function Dashboard() {
                 setActiveStudents(stats.activeStudents ?? null);
             } catch (error) {
                 console.error("Failed to load active students:", error);
+                setStudentsError(true);
             }
         };
 
@@ -52,6 +58,7 @@ function Dashboard() {
                 setTotalCourses(stats.totalCourses ?? null);
             } catch (error) {
                 console.error("Failed to load course statistics:", error);
+                setCoursesError(true);
             }
         };
 
@@ -66,6 +73,7 @@ function Dashboard() {
                 setTotalActivities(stats.totalActivities ?? null);
             } catch (error) {
                 console.error("Failed to load activity statistics:", error);
+                setActivitiesError(true);
             }
         };
 
@@ -75,7 +83,25 @@ function Dashboard() {
     return (
 
     <BackofficeLayout>
-        <Toaster position="top-right" />
+
+        <Toaster
+            position="top-center"
+            toastOptions={{
+                duration: 4000,
+                style: {
+                    padding: "12px 18px",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                },
+                error: {
+                    style: {
+                        color: "#dc2626",
+                        background: "#fef2f2",
+                        border: "1px solid #fecaca",
+                    },
+                },
+            }}
+        />
 
         <div className="dashboard-page">
 
@@ -91,28 +117,114 @@ function Dashboard() {
 
                 <DashboardCard
                     title="Total Users"
-                    value={totalUsers === null ? "—" : totalUsers.toLocaleString()}
+                    value={
+                        usersError
+                            ? <span
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    padding: "6px 10px",
+                                    fontSize: "12px",
+                                    fontWeight: 500,
+                                    color: "#dc2626",
+                                    backgroundColor: "#fef2f2",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                Unable to load
+                            </span>
+                            : totalUsers === null
+                                ? <span style={{ fontSize: "14px", color: "#888" }}>
+                                    Loading...
+                                  </span>
+                                : totalUsers.toLocaleString()
+                    }
                     icon={<Users size={18} />}
                 />
 
                 <DashboardCard
                     title="Active Students"
-                    value={activeStudents === null ? "—" : activeStudents.toLocaleString()}
+                    value={
+                        studentsError
+                            ?
+                            <span
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    padding: "6px 10px",
+                                    fontSize: "12px",
+                                    fontWeight: 500,
+                                    color: "#dc2626",
+                                    backgroundColor: "#fef2f2",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                Unable to load
+                            </span>
+
+                            : activeStudents === null
+                                ? <span style={{ fontSize: "14px", color: "#888" }}>
+                                    Loading...
+                                  </span>
+                                : activeStudents.toLocaleString()
+                    }
                     icon={<FaUser size={18} />}
                 />
 
                 <DashboardCard
                     title="Total Courses"
-                    value={totalCourses === null ? "—" : totalCourses.toLocaleString()}
+                    value={
+                        coursesError
+                            ?
+                            <span
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    padding: "6px 10px",
+                                    fontSize: "12px",
+                                    fontWeight: 500,
+                                    color: "#dc2626",
+                                    backgroundColor: "#fef2f2",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                Unable to load
+                            </span>
+
+                            : totalCourses === null
+                                ? <span style={{ fontSize: "14px", color: "#888" }}>
+                                    Loading...
+                                  </span>
+                                : totalCourses.toLocaleString()
+                    }
                     icon={<BookOpen size={18} />}
                 />
 
                 <DashboardCard
                     title="Activities"
                     value={
-                        totalActivities === null
-                            ? "—"
-                            : totalActivities.toLocaleString()
+                        activitiesError
+                            ?
+                            <span
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    padding: "6px 10px",
+                                    fontSize: "12px",
+                                    fontWeight: 500,
+                                    color: "#dc2626",
+                                    backgroundColor: "#fef2f2",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                Unable to load
+                            </span>
+
+                            : totalActivities === null
+                                ? <span style={{ fontSize: "14px", color: "#888" }}>
+                                    Loading...
+                                  </span>
+                                : totalActivities.toLocaleString()
                     }
                     icon={<Sparkles size={18} />}
                 />

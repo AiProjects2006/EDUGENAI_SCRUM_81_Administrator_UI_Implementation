@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 function AddUserModal({ onClose, onSave, editingUser }) {
-
+    const [isSaving, setIsSaving] = useState(false);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -37,27 +37,35 @@ function AddUserModal({ onClose, onSave, editingUser }) {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (editingUser) {
-            onSave({
-                id: editingUser.id,
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                contactNumber: formData.contactNumber,
-            });
-        } else {
-            onSave({
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                username: formData.username,
-                email: formData.email,
-                contactNumber: formData.contactNumber,
-                password: formData.password,
-                role: formData.role,
-            });
+        if (isSaving) return;
+
+        setIsSaving(true);
+
+        try {
+            if (editingUser) {
+                await onSave({
+                    id: editingUser.id,
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    contactNumber: formData.contactNumber,
+                });
+            } else {
+                await onSave({
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    username: formData.username,
+                    email: formData.email,
+                    contactNumber: formData.contactNumber,
+                    password: formData.password,
+                    role: formData.role,
+                });
+            }
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -139,7 +147,23 @@ function AddUserModal({ onClose, onSave, editingUser }) {
                             name="contactNumber"
                             placeholder="Enter contact number"
                             value={formData.contactNumber}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, "");
+                                if (value.length <= 10) {
+                                    handleChange({
+                                        target: {
+                                            name: "contactNumber",
+                                            value: value,
+                                        },
+                                    });
+                                }
+                            }}
+                            inputMode="numeric"
+                            pattern="0[0-9]{9}"
+                            maxLength={10}
+                            minLength={10}
+                            title="Enter a valid 10-digit Sri Lankan phone number starting with 0"
+                            required
                         />
                     </div>
 
@@ -184,8 +208,11 @@ function AddUserModal({ onClose, onSave, editingUser }) {
                         <button
                             type="submit"
                             className="save-btn"
+                            disabled={isSaving}
                         >
-                            {editingUser ? "Update User" : "Save User"}
+                            {isSaving
+                                ? (editingUser ? "Updating..." : "Saving...")
+                                : (editingUser ? "Update User" : "Save User")}
                         </button>
 
                     </div>
