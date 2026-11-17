@@ -2,9 +2,10 @@
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
-    background: #ffffff;
-    border: 1px solid #eee3f2;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
+    box-shadow: 0 6px 20px rgba(36, 20, 61, 0.05);
 }
 
 .notification-log-header {
@@ -17,14 +18,14 @@
 
 .notification-log-header h2 {
     margin: 0;
-    color: #32163b;
+    color: #1B1030;
     font-size: 20px;
     font-weight: 700;
 }
 
 .notification-log-header p {
     margin: 4px 0 0;
-    color: #95889b;
+    color: #6E5D88;
     font-size: 14px;
 }
 
@@ -34,8 +35,8 @@
     gap: 5px;
     padding: 4px 7px;
     border-radius: 4px;
-    background: #f0faf3;
-    color: #32915a;
+    background: #DCFCE7;
+    color: #15803D;
     font-size: 12px;
     font-weight: 600;
 }
@@ -44,7 +45,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #39a867;
+    background: #15803D;
 }
 
 .notification-log-toolbar {
@@ -63,9 +64,10 @@
     gap: 6px;
     box-sizing: border-box;
     padding: 0 8px;
-    border: 1px solid #e5dbe8;
+    border: 1px solid #DDD6FE;
     border-radius: 4px;
-    color: #988b9d;
+    background: #FFFFFF;
+    color: #7B6C92;
 }
 
 .notification-log-search input {
@@ -74,22 +76,22 @@
     border: none;
     outline: none;
     background: transparent;
-    color: #403343;
+    color: #24143D;
     font-family: inherit;
     font-size: 14px;
 }
 
 .notification-log-search input::placeholder {
-    color: #afa3b3;
+    color: #7B6C92;
 }
 
 .notification-log-toolbar select {
     height: 30px;
     padding: 0 8px;
-    border: 1px solid #e5dbe8;
+    border: 1px solid #DDD6FE;
     border-radius: 4px;
-    background: #ffffff;
-    color: #6f6175;
+    background: #FFFFFF;
+    color: #24143D;
     font-family: inherit;
     font-size: 14px;
     outline: none;
@@ -108,10 +110,10 @@
 .notification-log-table th {
     height: 50px;
     padding: 0 9px;
-    background: #faf7fb;
-    border-top: 1px solid #f0e9f3;
-    border-bottom: 1px solid #eee3f2;
-    color: #95889b;
+    background: #FAF8FF;
+    border-top: 1px solid #EDE9FE;
+    border-bottom: 1px solid #EDE9FE;
+    color: #6E5D88;
     font-size: 14px;
     font-weight: 600;
     text-align: left;
@@ -121,21 +123,21 @@
 .notification-log-table td {
     height: 50px;
     padding: 0 9px;
-    border-bottom: 1px solid #f2edf4;
-    color: #5d5061;
+    border-bottom: 1px solid #EDE9FE;
+    color: #3B2854;
     font-size: 14px;
     white-space: nowrap;
 }
 
 .notification-log-table tbody tr:hover {
-    background: #fdfafe;
+    background: #FAF8FF;
 }
 
 .notification-log-type {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #403343;
+    color: #1B1030;
     font-weight: 600;
 }
 
@@ -146,8 +148,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #6D28D9;
 }
 
 .notification-status {
@@ -166,23 +168,23 @@
 
 .notification-status.sent,
 .notification-status.delivered {
-    background: #eaf8ef;
-    color: #31915a;
+    background: #DCFCE7;
+    color: #15803D;
 }
 
 .notification-status.failed {
-    background: #fceeee;
-    color: #c34c4c;
+    background: #FEE2E2;
+    color: #DC2626;
 }
 
 .notification-status.unknown {
-    background: #f3eff4;
-    color: #766a79;
+    background: #F5F3FF;
+    color: #5B4B73;
 }
 
 .notification-log-empty {
     height: 70px !important;
-    color: #9a8da0 !important;
+    color: #6E5D88 !important;
     text-align: center;
 }
 
@@ -192,7 +194,7 @@
     justify-content: space-between;
     gap: 10px;
     padding-top: 11px;
-    color: #95889b;
+    color: #6E5D88;
     font-size: 12px;
 }
 
@@ -208,26 +210,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #e4d9e7;
+    border: 1px solid #DDD6FE;
     border-radius: 4px;
-    background: #ffffff;
-    color: #72008c;
+    background: #FFFFFF;
+    color: #5B21B6;
     cursor: pointer;
 }
 
 .notification-log-pagination button:hover:not(:disabled) {
-    background: #faf5fc;
+    background: #F3E8FF;
+    border-color: #C4B5FD;
+    color: #4C1D95;
 }
 
 .notification-log-pagination button:disabled {
-    color: #c4b9c7;
+    color: #9F8FB8;
     cursor: not-allowed;
-    background: #faf8fb;
+    background: #FAF8FF;
 }
 
 .notification-log-pagination span {
     font-size: 12px;
-    color: #756878;
+    color: #5B4B73;
 }
 
 @media (max-width: 600px) {

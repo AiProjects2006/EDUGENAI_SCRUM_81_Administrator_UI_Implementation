@@ -48,25 +48,25 @@ export const chartData = [
 export const activity = [
     {
         icon: UserPlus,
-        color: "#a855f7",
+        color: "#6D28D9",
         title: "User Created: Liam J.",
         time: "2 mins ago · System",
     },
     {
         icon: BookOpenCheck,
-        color: "#ec4899",
+        color: "#9333EA",
         title: "Course Published: Bio 101",
         time: "15 mins ago · Sarah Miller",
     },
     {
         icon: Wand2,
-        color: "#a855f7",
+        color: "#7C3AED",
         title: "AI Gen: Physics Quiz",
         time: "44 mins ago · Auto-Worker",
     },
     {
         icon: ShieldAlert,
-        color: "#ef4444",
+        color: "#DC2626",
         title: "Security Alert: Failed Login",
         time: "1 hour ago · IP 192.168.51",
     },
@@ -80,7 +80,7 @@ export const users = [
         role: "Student",
         email: "liam.j@edu.ai",
         status: "Active",
-        color: "#a855f7",
+        color: "#6D28D9",
     },
     {
         id: "#12045",
@@ -89,7 +89,7 @@ export const users = [
         role: "Teacher",
         email: "s.miller@edu.ai",
         status: "Active",
-        color: "#ec4899",
+        color: "#9333EA",
     },
     {
         id: "#12046",
@@ -98,6 +98,6 @@ export const users = [
         role: "Parent",
         email: "d.ross@home.com",
         status: "Suspended",
-        color: "#f59e0b",
+        color: "#B45309",
     },
 ];

@@ -12,8 +12,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
-    border: 1px solid #eee5f5;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
     border-radius: 9px;
 }
 
@@ -21,14 +22,14 @@
     display: block;
     margin-bottom: 6px;
     font-size: 14px;
-    color: #6f6677;
+    color: #6E5D88;
 }
 
 .moderation-stat-value {
     display: block;
     font-size: 24px;
     line-height: 1;
-    color: #211033;
+    color: #1B1030;
 }
 
 .moderation-stat-icon {
@@ -41,23 +42,23 @@
 }
 
 .moderation-stat-icon.pending {
-    background: #eadcf5;
-    color: #7b159f;
+    background: #F3E8FF;
+    color: #6D28D9;
 }
 
 .moderation-stat-icon.approved {
-    background: #e7f8ee;
-    color: #22a765;
+    background: #DCFCE7;
+    color: #15803D;
 }
 
 .moderation-stat-icon.rejected {
-    background: #fcecef;
-    color: #c93669;
+    background: #FEF2F2;
+    color: #DC2626;
 }
 
 .moderation-stat-icon.ai-generated {
-    background: #e8e9ff;
-    color: #5c5ce6;
+    background: #EDE9FE;
+    color: #5B21B6;
 }
 
 @media (max-width: 900px) {

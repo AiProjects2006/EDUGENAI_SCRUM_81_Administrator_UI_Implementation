@@ -1,79 +1,80 @@
 .user-table-card{
     margin-top:24px;
-    background:#ffffff;
+    background:#FFFFFF;
     border:1px solid #ECE8FF;
     border-radius:16px;
     padding:24px;
-    box-shadow:0 4px 18px rgba(124, 58, 237, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow:0 6px 20px rgba(36, 20, 61, 0.05);
     font-family:'Poppins', sans-serif;
     overflow-x:auto;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 th{
     text-align:left;
     padding:14px 16px;
-    color:#7B6C92;
+    background:#FAF8FF;
+    color:#6E5D88;
     font-size:0.8rem;
     font-weight:600;
     text-transform:uppercase;
     letter-spacing:0.5px;
-    border-bottom:1.5px solid #ECE8FF;
+    border-bottom:1.5px solid #EDE9FE;
 }
 
 td{
     padding:16px;
-    border-bottom:1px solid #F8F5FD;
+    border-bottom:1px solid #EDE9FE;
     color:#24143D;
     font-size:0.9rem;
     vertical-align:middle;
 }
 
 tr:hover td{
-    background:#FAF8FD;
+    background:#FAF8FF;
 }
 
-.user-info{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .avatar{
     width:42px;
     height:42px;
     border-radius:12px;
-    background:linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+    background:linear-gradient(135deg, #6D28D9, #9333EA);
     color:#FFFFFF;
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:700;
     font-size:0.92rem;
-    box-shadow:0 4px 12px rgba(124, 58, 237, 0.3);
+    box-shadow:0 4px 12px rgba(109, 40, 217, 0.24);
 }
 
 .user-info h4{
     margin:0;
     font-size:0.92rem;
     font-weight:600;
-    color:#24143D;
+    color:#1B1030;
 }
 
-.user-info p{
-    margin:3px 0 0;
-    color:#7B6C92;
-    font-size:0.8rem;
+.user-info p {
+    margin: 3px 0 0;
+    color: #7B6C92;
+    font-size: 0.8rem;
 }
 
 .role-badge{
-    background:#F3EEFF;
-    color:#7C3AED;
-    border:1px solid #DDD6FE;
+    background:#F3E8FF;
+    color:#5B21B6;
+    border:1px solid #E9D5FF;
     padding:5px 12px;
     border-radius:999px;
     font-size:0.78rem;
@@ -82,42 +83,42 @@ tr:hover td{
     letter-spacing:0.3px;
 }
 
-.status{
-    display:inline-flex;
-    align-items:center;
-    padding:5px 12px;
-    border-radius:999px;
-    font-size:0.78rem;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:0.3px;
+.status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 .status.active{
-    background:#ECFDF5;
-    color:#059669;
-    border:1px solid #6EE7B7;
+    background:#DCFCE7;
+    color:#15803D;
+    border:1px solid #86EFAC;
 }
 
 .status.pending{
-    background:#FFFBEB;
+    background:#FEF3C7;
     color:#B45309;
-    border:1px solid #FCD34D;
+    border:1px solid #FDE68A;
 }
 
 .status.suspended{
     background:#FEF2F2;
     color:#DC2626;
-    border:1px solid #FCA5A5;
+    border:1px solid #FECACA;
 }
 
 .icon-btn{
     width:34px;
     height:34px;
-    border:1px solid #ECE8FF;
+    border:1px solid #DDD6FE;
     border-radius:8px;
-    background:#ffffff;
-    color:#6D28D9;
+    background:#F5F3FF;
+    color:#5B21B6;
     margin-right:8px;
     cursor:pointer;
     display:inline-flex;
@@ -127,34 +128,36 @@ tr:hover td{
 }
 
 .icon-btn:hover{
-    background:#F3EEFF;
-    color:#7C3AED;
-    border-color:#DDD6FE;
+    background:#EDE9FE;
+    color:#4C1D95;
+    border-color:#C4B5FD;
 }
 
 .icon-btn.delete{
+    background:#FEF2F2;
     color:#DC2626;
-    border-color:#FCA5A5;
+    border-color:#FECACA;
 }
 
 .icon-btn.delete:hover{
-    background:#FEF2F2;
+    background:#FEE2E2;
     border-color:#DC2626;
     color:#B91C1C;
 }
 
 /* Row delete animation */
-.deleting-row{
-    animation:fadeOutRow .35s ease forwards;
+.deleting-row {
+    animation: fadeOutRow .35s ease forwards;
 }
 
-@keyframes fadeOutRow{
-    from{
-        opacity:1;
-        transform:translateX(0);
+@keyframes fadeOutRow {
+    from {
+        opacity: 1;
+        transform: translateX(0);
     }
-    to{
-        opacity:0;
-        transform:translateX(-15px);
+
+    to {
+        opacity: 0;
+        transform: translateX(-15px);
     }
 }

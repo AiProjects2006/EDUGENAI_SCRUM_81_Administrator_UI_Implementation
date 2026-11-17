@@ -1,22 +1,23 @@
 .activity-types-panel {
     min-height: 280px;
-    background: #ffffff;
-    border: 1px solid #eee5f5;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 9px;
     padding: 16px;
     box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .activity-types-header h2 {
     margin: 0;
-    color: #211033;
+    color: #1B1030;
     font-size: 18px;
     font-weight: 600;
 }
 
 .activity-types-header p {
     margin: 5px 0 0;
-    color: #897f90;
+    color: #6E5D88;
     font-size: 12px;
 }
 
@@ -38,9 +39,9 @@
     justify-content: center;
     border-radius: 50%;
     background: conic-gradient(
-            #ee55bd 0 45%,
-            #8d4bd0 45% 77%,
-            #cdb3dc 77% 100%
+            #6D28D9 0 45%,
+            #9333EA 45% 77%,
+            #C4B5FD 77% 100%
     );
 }
 
@@ -49,7 +50,7 @@
     position: absolute;
     width: 94px;
     height: 94px;
-    background: #ffffff;
+    background: #FFFFFF;
     border-radius: 50%;
 }
 
@@ -61,7 +62,7 @@
 
 .donut-inner strong {
     display: block;
-    color: #211033;
+    color: #1B1030;
     font-size: 19px;
     font-weight: 700;
 }
@@ -69,7 +70,7 @@
 .donut-inner span {
     display: block;
     margin-top: 3px;
-    color: #9b8fa0;
+    color: #7B6C92;
     font-size: 9px;
 }
 
@@ -83,7 +84,7 @@
     justify-content: space-between;
     gap: 15px;
     margin-bottom: 14px;
-    color: #665b6c;
+    color: #5B4B73;
     font-size: 11px;
 }
 
@@ -94,7 +95,7 @@
 }
 
 .ai-legend-item strong {
-    color: #3d3044;
+    color: #1B1030;
     font-size: 11px;
 }
 
@@ -106,15 +107,15 @@
 }
 
 .dot-0 {
-    background: #ee55bd;
+    background: #6D28D9;
 }
 
 .dot-1 {
-    background: #8d4bd0;
+    background: #9333EA;
 }
 
 .dot-2 {
-    background: #cdb3dc;
+    background: #C4B5FD;
 }
 
 @media (max-width: 600px) {

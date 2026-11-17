@@ -6,17 +6,19 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(20, 10, 30, 0.45);
+    background: rgba(27, 16, 48, 0.58);
+    backdrop-filter: blur(4px);
     overflow-y: auto;
 }
 
 .reject-modal {
     width: 100%;
     max-width: 520px;
-    background: white;
+    background: #FFFFFF;
+    border: 1px solid #E9D5FF;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 12px 35px rgba(30, 15, 40, 0.18);
+    box-shadow: 0 24px 60px rgba(27, 16, 48, 0.28);
 }
 
 .reject-modal-header {
@@ -24,7 +26,8 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 18px;
-    border-bottom: 1px solid #eee5f5;
+    background: #FAF8FF;
+    border-bottom: 1px solid #EDE9FE;
 }
 
 .reject-modal-title-area {
@@ -41,8 +44,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 6px;
-    background: #fcecef;
-    color: #c93669;
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #DC2626;
 }
 
 .reject-modal-label {
@@ -50,7 +54,7 @@
     margin-bottom: 5px;
     font-size: 8px;
     font-weight: 600;
-    color: #9a8fa1;
+    color: #6E5D88;
     text-transform: uppercase;
 }
 
@@ -58,7 +62,7 @@
     margin: 0;
     font-size: 16px;
     font-weight: 700;
-    color: #291537;
+    color: #1B1030;
 }
 
 .reject-close-btn {
@@ -67,15 +71,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
+    border: 1px solid #DDD6FE;
     border-radius: 6px;
-    background: #f6f2f8;
-    color: #6f6275;
+    background: #F5F3FF;
+    color: #5B4B73;
     cursor: pointer;
 }
 
 .reject-close-btn:hover {
-    background: #eee7f1;
+    background: #EDE9FE;
+    color: #1B1030;
 }
 
 .reject-modal-body {
@@ -87,28 +92,28 @@
     flex-direction: column;
     margin-bottom: 18px;
     padding: 12px;
-    border: 1px solid #eee5f5;
+    border: 1px solid #EDE9FE;
     border-radius: 7px;
-    background: #faf8fc;
+    background: #FAF8FF;
 }
 
 .reject-content-info span {
     margin-bottom: 5px;
     font-size: 8px;
     font-weight: 600;
-    color: #9a8fa1;
+    color: #7B6C92;
     text-transform: uppercase;
 }
 
 .reject-content-info strong {
     font-size: 11px;
-    color: #392946;
+    color: #1B1030;
 }
 
 .reject-content-info small {
     margin-top: 4px;
     font-size: 9px;
-    color: #968a9c;
+    color: #6E5D88;
 }
 
 .reject-reason-group label {
@@ -116,7 +121,7 @@
     margin-bottom: 6px;
     font-size: 8px;
     font-weight: 600;
-    color: #8b8091;
+    color: #5B4B73;
     text-transform: uppercase;
 }
 
@@ -125,19 +130,19 @@
     min-height: 120px;
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid #e3dce8;
+    border: 1px solid #DDD6FE;
     border-radius: 6px;
-    background: white;
+    background: #FFFFFF;
     font-family: inherit;
     font-size: 11px;
     line-height: 1.5;
-    color: #403448;
+    color: #24143D;
     resize: vertical;
     outline: none;
 }
 
 .reject-reason-group textarea:focus {
-    border-color: #c93669;
+    border-color: #DC2626;
 }
 
 .reject-modal-footer {
@@ -146,8 +151,8 @@
     justify-content: flex-end;
     gap: 8px;
     padding: 14px 18px;
-    border-top: 1px solid #eee5f5;
-    background: #fcfbfd;
+    border-top: 1px solid #EDE9FE;
+    background: #FAF8FF;
 }
 
 .reject-cancel-btn,
@@ -166,21 +171,24 @@
 }
 
 .reject-cancel-btn {
-    background: #f1edf3;
-    color: #625569;
+    background: #FFFFFF;
+    border: 1px solid #DDD6FE;
+    color: #5B21B6;
 }
 
 .reject-cancel-btn:hover {
-    background: #e8e2eb;
+    background: #F3E8FF;
+    border-color: #C4B5FD;
 }
 
 .reject-submit-btn {
-    background: #fcecef;
-    color: #c93669;
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #DC2626;
 }
 
 .reject-submit-btn:hover:not(:disabled) {
-    background: #f8dfe7;
+    background: #FEE2E2;
 }
 
 .reject-submit-btn:disabled {

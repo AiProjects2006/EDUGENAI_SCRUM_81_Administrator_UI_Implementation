@@ -3,10 +3,11 @@
     align-items: flex-start;
     gap: 14px;
     padding: 18px;
-    background: #ffffff;
-    border: 1px solid #e9dff0;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 10px;
     box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .upcoming-deadline-icon {
@@ -17,8 +18,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    color: #7c3aed;
-    background: #f4edff;
+    color: #6D28D9;
+    background: #F3E8FF;
 }
 
 .upcoming-deadline-content {
@@ -28,7 +29,7 @@
 .upcoming-deadline-label {
     display: block;
     margin-bottom: 6px;
-    color: #8a6b9b;
+    color: #6E5D88;
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.7px;
@@ -37,14 +38,14 @@
 
 .upcoming-deadline-content h2 {
     margin: 0 0 6px;
-    color: #2f2435;
+    color: #1B1030;
     font-size: 16px;
     font-weight: 600;
 }
 
 .upcoming-deadline-content p {
     margin: 0;
-    color: #766b7d;
+    color: #5B4B73;
     font-size: 16px;
     line-height: 1.5;
 }
@@ -55,9 +56,9 @@
     gap: 6px;
     margin-top: 12px;
     padding: 6px 10px;
-    color: #8d2db8;
-    background: #ffffff;
-    border: 1px solid #eadcf0;
+    color: #5B21B6;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 600;

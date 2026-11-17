@@ -1,18 +1,18 @@
 .user-filters{
-    background:#ffffff;
+    background:#FFFFFF;
     padding:20px;
     border:1px solid #ECE8FF;
     border-radius:16px;
     margin-top:24px;
-    box-shadow:0 4px 14px rgba(124, 58, 237, 0.03);
+    box-shadow:0 4px 14px rgba(88, 28, 135, 0.06);
     font-family:'Poppins', sans-serif;
 }
 
-.filters-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
 }
 
 .filters-title{
@@ -21,33 +21,33 @@
     gap:8px;
     font-size:0.95rem;
     font-weight:600;
-    color:#24143D;
+    color:#1B1030;
 }
 
-.filters-row{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+.filters-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
 }
 
-.filter-group{
-    display:flex;
-    flex-direction:column;
+.filter-group {
+    display: flex;
+    flex-direction: column;
 }
 
 .filter-group label{
     font-size:0.86rem;
     font-weight:600;
-    color:#24143D;
+    color:#3B2854;
     margin-bottom:6px;
 }
 
 .filter-group select{
     width:100%;
     padding:10px 14px;
-    border:1.5px solid #ECE8FF;
+    border:1.5px solid #DDD6FE;
     border-radius:10px;
-    background:#FCFAFF;
+    background:#FFFFFF;
     color:#24143D;
     font-size:0.88rem;
     font-family:'Poppins', sans-serif;
@@ -60,7 +60,7 @@
 .filter-group select:focus{
     border-color:#7C3AED;
     background:#FFFFFF;
-    box-shadow:0 0 0 3px rgba(124, 58, 237, 0.15);
+    box-shadow:0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .clear-filter-btn{
@@ -68,10 +68,10 @@
     align-items:center;
     gap:6px;
     padding:8px 16px;
-    border:1px solid #ECE8FF;
+    border:1px solid #DDD6FE;
     border-radius:10px;
-    background:#F8F5FD;
-    color:#6D28D9;
+    background:#F5F3FF;
+    color:#5B21B6;
     cursor:pointer;
     font-weight:600;
     font-size:0.84rem;
@@ -80,13 +80,13 @@
 }
 
 .clear-filter-btn:hover{
-    color:#7C3AED;
-    border-color:#DDD6FE;
-    background:#F3EEFF;
+    color:#4C1D95;
+    border-color:#C4B5FD;
+    background:#EDE9FE;
 }
 
-@media(max-width:992px){
-    .filters-row{
-        grid-template-columns:1fr;
+@media(max-width:992px) {
+    .filters-row {
+        grid-template-columns: 1fr;
     }
 }

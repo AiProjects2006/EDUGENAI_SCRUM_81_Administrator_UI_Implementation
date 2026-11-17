@@ -1,21 +1,22 @@
 .course-performance-panel {
-    background: #ffffff;
-    border: 1px solid #eee5f5;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 9px;
     padding: 16px;
     margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(36, 20, 61, 0.05);
 }
 
 .course-performance-header h2 {
     margin: 0;
-    color: #211033;
+    color: #1B1030;
     font-size: 18px;
     font-weight: 600;
 }
 
 .course-performance-header p {
     margin: 5px 0 0;
-    color: #897f90;
+    color: #6E5D88;
     font-size: 14px;
 }
 
@@ -33,19 +34,19 @@
 
 .course-performance-table th {
     padding: 9px 10px;
-    color: #918691;
-    background: #faf8fc;
+    color: #6E5D88;
+    background: #FAF8FF;
     font-size: 14px;
     font-weight: 600;
     text-align: left;
-    border-bottom: 1px solid #eee7f2;
+    border-bottom: 1px solid #EDE9FE;
 }
 
 .course-performance-table td {
     padding: 11px 10px;
-    color: #665b6c;
+    color: #3B2854;
     font-size: 12px;
-    border-bottom: 1px solid #f1ebf4;
+    border-bottom: 1px solid #EDE9FE;
 }
 
 .course-performance-table tbody tr:last-child td {
@@ -53,7 +54,7 @@
 }
 
 .course-name {
-    color: #34263b !important;
+    color: #1B1030 !important;
     font-weight: 600;
 }
 
@@ -68,19 +69,19 @@
     width: 60px;
     height: 5px;
     overflow: hidden;
-    background: #eee7f2;
+    background: #EDE9FE;
     border-radius: 10px;
 }
 
 .completion-bar span {
     display: block;
     height: 100%;
-    background: #9a38d1;
+    background: linear-gradient(135deg, #6D28D9, #9333EA);
     border-radius: 10px;
 }
 
 .completion-cell strong {
-    color: #4b3b52;
+    color: #1B1030;
     font-size: 12px;
 }
 
@@ -93,11 +94,11 @@
 }
 
 .engagement-badge.very-high {
-    color: #31774f;
-    background: #e8f5ed;
+    color: #15803D;
+    background: #DCFCE7;
 }
 
 .engagement-badge.medium {
-    color: #8a6a28;
-    background: #faf1dc;
+    color: #B45309;
+    background: #FEF3C7;
 }

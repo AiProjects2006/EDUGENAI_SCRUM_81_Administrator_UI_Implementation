@@ -1,10 +1,11 @@
 .email-templates-card {
     width: 100%;
     padding: 15px;
-    background: #ffffff;
-    border: 1px solid #eee3f2;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
     box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .email-templates-header {
@@ -17,7 +18,7 @@
 
 .email-templates-header h2 {
     margin: 0;
-    color: #32163b;
+    color: #1B1030;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.2;
@@ -25,7 +26,7 @@
 
 .email-templates-header p {
     margin: 4px 0 0;
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 13px;
     line-height: 1.4;
 }
@@ -34,8 +35,9 @@
     flex-shrink: 0;
     padding: 4px 7px;
     border-radius: 4px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #5B21B6;
+    border: 1px solid #E9D5FF;
     font-size: 12px;
     font-weight: 600;
 }
@@ -50,7 +52,7 @@
     align-items: center;
     gap: 9px;
     padding: 10px 0;
-    border-top: 1px solid #f0e9f3;
+    border-top: 1px solid #EDE9FE;
     min-height: 39px;
     box-sizing: border-box;
 }
@@ -72,8 +74,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #6D28D9;
 }
 
 .email-template-info {
@@ -85,13 +87,13 @@
 }
 
 .email-template-info strong {
-    color: #3b2940;
+    color: #1B1030;
     font-size: 14px;
     font-weight: 500;
 }
 
 .email-template-info span {
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 14px;
     line-height: 1.35;
 }
@@ -103,17 +105,19 @@
     flex-shrink: 0;
     height: 27px;
     padding: 0 8px;
-    border: 1px solid #e3d3e8;
+    border: 1px solid #DDD6FE;
     border-radius: 4px;
-    background: #ffffff;
-    color: #72008c;
+    background: #FFFFFF;
+    color: #5B21B6;
     font-size: 14px;
     font-weight: 450;
     cursor: pointer;
 }
 
 .email-template-edit:hover {
-    background: #faf5fc;
+    background: #F3E8FF;
+    border-color: #C4B5FD;
+    color: #4C1D95;
 }
 
 .template-editor-overlay {
@@ -123,17 +127,19 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(31, 14, 38, 0.42);
+    background: rgba(27, 16, 48, 0.58);
+    backdrop-filter: blur(4px);
     z-index: 1000;
 }
 
 .template-editor {
     width: 100%;
     max-width: 500px;
-    background: #ffffff;
+    background: #FFFFFF;
+    border: 1px solid #E9D5FF;
     border-radius: 9px;
     overflow: hidden;
-    box-shadow: 0 12px 35px rgba(37, 14, 45, 0.2);
+    box-shadow: 0 24px 60px rgba(27, 16, 48, 0.28);
 }
 
 .template-editor-header {
@@ -141,18 +147,19 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 15px;
-    border-bottom: 1px solid #eee3f2;
+    background: #FAF8FF;
+    border-bottom: 1px solid #EDE9FE;
 }
 
 .template-editor-header h3 {
     margin: 0;
-    color: #32163b;
+    color: #1B1030;
     font-size: 18px;
 }
 
 .template-editor-header p {
     margin: 4px 0 0;
-    color: #948698;
+    color: #6E5D88;
     font-size: 14px;
 }
 
@@ -161,8 +168,8 @@
     height: 25px;
     border: none;
     border-radius: 5px;
-    background: #f7f2f9;
-    color: #766578;
+    background: #F5F3FF;
+    color: #5B4B73;
     font-size: 19px;
     line-height: 1;
     cursor: pointer;
@@ -176,7 +183,7 @@
 }
 
 .template-editor-body label {
-    color: #6f6175;
+    color: #3B2854;
     font-size: 14px;
     font-weight: 500;
 }
@@ -186,10 +193,10 @@
     width: 100%;
     box-sizing: border-box;
     padding: 8px;
-    border: 1px solid #e5dbe8;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: #ffffff;
-    color: #403343;
+    background: #FFFFFF;
+    color: #24143D;
     font-family: inherit;
     font-size: 12px;
     outline: none;
@@ -206,7 +213,8 @@
 
 .template-editor-body input:focus,
 .template-editor-body textarea:focus {
-    border-color: #b77bc5;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .template-editor-footer {
@@ -214,7 +222,8 @@
     justify-content: flex-end;
     gap: 7px;
     padding: 12px 15px;
-    border-top: 1px solid #eee3f2;
+    background: #FAF8FF;
+    border-top: 1px solid #EDE9FE;
 }
 
 .template-cancel-btn,
@@ -228,15 +237,16 @@
 }
 
 .template-cancel-btn {
-    border: 1px solid #e0d3e4;
-    background: #ffffff;
-    color: #6f6175;
+    border: 1px solid #DDD6FE;
+    background: #FFFFFF;
+    color: #5B21B6;
 }
 
 .template-save-btn {
-    border: 1px solid #72008c;
-    background: #72008c;
-    color: #ffffff;
+    border: none;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    color: #FFFFFF;
+    box-shadow: 0 6px 14px rgba(109, 40, 217, 0.28);
 }
 
 @media (max-width: 550px) {

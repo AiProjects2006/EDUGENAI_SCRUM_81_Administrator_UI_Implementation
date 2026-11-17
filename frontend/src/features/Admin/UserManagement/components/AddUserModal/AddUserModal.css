@@ -1,7 +1,7 @@
 .modal-overlay{
     position:fixed;
     inset:0;
-    background:rgba(36, 20, 61, 0.65);
+    background:rgba(27, 16, 48, 0.58);
     backdrop-filter:blur(4px);
     display:flex;
     justify-content:center;
@@ -11,11 +11,11 @@
 
 .modal{
     width:520px;
-    background:#ffffff;
-    border:1px solid #ECE8FF;
+    background:#FFFFFF;
+    border:1px solid #E9D5FF;
     border-radius:20px;
     padding:30px;
-    box-shadow:0 20px 45px rgba(124, 58, 237, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
+    box-shadow:0 24px 60px rgba(27, 16, 48, 0.28);
     font-family:'Poppins', sans-serif;
 }
 
@@ -25,52 +25,52 @@
     align-items:center;
     margin-bottom:20px;
     padding-bottom:14px;
-    border-bottom:1px solid #ECE8FF;
+    border-bottom:1px solid #EDE9FE;
 }
 
 .modal-header h2{
     margin:0;
     font-size:1.45rem;
     font-weight:700;
-    color:#24143D;
+    color:#1B1030;
 }
 
 .close-btn{
     background:none;
     border:none;
     cursor:pointer;
-    color:#9C8EB9;
+    color:#7B6C92;
     transition:color 0.2s;
 }
 
-.close-btn:hover{
-    color:#24143D;
+.close-btn:hover {
+    color: #24143D;
 }
 
-.form-group{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:16px;
-    text-align:left;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    text-align: left;
 }
 
 .form-group label{
     margin-bottom:6px;
     font-size:0.86rem;
     font-weight:600;
-    color:#24143D;
+    color:#3B2854;
 }
 
 .form-group input,
 .form-group select{
     width:100%;
     padding:11px 14px;
-    border:1.5px solid #ECE8FF;
+    border:1.5px solid #DDD6FE;
     border-radius:10px;
     font-size:0.92rem;
     font-family:'Poppins', sans-serif;
     color:#24143D;
-    background:#FCFAFF;
+    background:#FFFFFF;
     outline:none;
     transition:all 0.2s ease-in-out;
     box-sizing:border-box;
@@ -80,13 +80,13 @@
 .form-group select:focus{
     border-color:#7C3AED;
     background:#FFFFFF;
-    box-shadow:0 0 0 3px rgba(124, 58, 237, 0.15);
+    box-shadow:0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
 .modal-buttons{
@@ -95,14 +95,14 @@
     gap:12px;
     margin-top:24px;
     padding-top:16px;
-    border-top:1px solid #ECE8FF;
+    border-top:1px solid #EDE9FE;
 }
 
 .cancel-btn{
     padding:10px 18px;
-    border:1px solid #ECE8FF;
-    background:#F8F5FD;
-    color:#6D28D9;
+    border:1px solid #DDD6FE;
+    background:#FFFFFF;
+    color:#5B21B6;
     border-radius:10px;
     cursor:pointer;
     font-size:0.88rem;
@@ -112,26 +112,26 @@
 }
 
 .cancel-btn:hover{
-    color:#7C3AED;
-    border-color:#DDD6FE;
-    background:#F3EEFF;
+    color:#4C1D95;
+    border-color:#C4B5FD;
+    background:#F3E8FF;
 }
 
 .save-btn{
     padding:10px 22px;
     border:none;
-    background:linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
-    color:#ffffff;
+    background:linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    color:#FFFFFF;
     border-radius:10px;
     cursor:pointer;
     font-size:0.92rem;
     font-weight:600;
     font-family:'Poppins', sans-serif;
-    box-shadow:0 4px 14px rgba(124, 58, 237, 0.35);
+    box-shadow:0 6px 14px rgba(109, 40, 217, 0.28);
     transition:all 0.2s ease;
 }
 
 .save-btn:hover{
-    background:linear-gradient(135deg, #6D28D9 0%, #7E22CE 100%);
+    background:linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
     transform:translateY(-1px);
 }

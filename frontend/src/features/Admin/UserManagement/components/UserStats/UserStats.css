@@ -1,25 +1,26 @@
 .user-stat-card{
-    background:#ffffff;
+    background:#FFFFFF;
     border:1px solid #ECE8FF;
     border-radius:16px;
     padding:22px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 4px 14px rgba(124, 58, 237, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow:0 4px 14px rgba(88, 28, 135, 0.06);
     font-family:'Poppins', sans-serif;
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    transition:transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .user-stat-card:hover{
     transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(124, 58, 237, 0.09);
+    border-color:#C4B5FD;
+    box-shadow:0 8px 20px rgba(88, 28, 135, 0.11);
 }
 
 .user-stat-info p{
     margin:0;
     font-size:0.8rem;
-    color:#7B6C92;
+    color:#6E5D88;
     text-transform:uppercase;
     font-weight:600;
     letter-spacing:0.5px;
@@ -29,16 +30,16 @@
     margin:8px 0 0 0;
     font-size:1.85rem;
     font-weight:700;
-    color:#24143D;
+    color:#1B1030;
 }
 
 .user-stat-icon{
     width:48px;
     height:48px;
     border-radius:12px;
-    background:#F3EEFF;
-    color:#7C3AED;
-    border:1px solid #DDD6FE;
+    background:#F3E8FF;
+    color:#6D28D9;
+    border:1px solid #E9D5FF;
     display:flex;
     justify-content:center;
     align-items:center;

@@ -1,62 +1,66 @@
 .analytics-card{
-    background:white;
+    background:#FFFFFF;
+    border:1px solid #ECE8FF;
     border-radius:18px;
     padding:22px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    box-shadow:0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
-.analytics-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.title{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.title h3{
-    margin:0;
-    font-size:18px;
+.title h3 {
+    margin: 0;
+    font-size: 18px;
+    color:#1B1030;
 }
 
 .badge{
     background:#F3E8FF;
-    color:#A855F7;
+    color:#5B21B6;
+    border:1px solid #E9D5FF;
     padding:6px 14px;
     border-radius:20px;
     font-size:12px;
     font-weight:600;
 }
 
-.analytics-metrics{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:25px;
+.analytics-metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
 }
 
 .analytics-metrics p{
     margin:0;
-    color:#8b7fa8;
+    color:#6E5D88;
     font-size:12px;
 }
 
 .analytics-metrics h2{
     margin-top:6px;
-    color:#24143d;
+    color:#1B1030;
 }
 
 .chart-box{
-    background:#faf7ff;
+    background:#FAF8FF;
+    border:1px solid #EDE9FE;
     border-radius:14px;
     padding:15px;
 }
 
 .chart-box p{
     margin-bottom:10px;
-    color:#8b7fa8;
+    color:#5B4B73;
     font-size:13px;
 }
