@@ -8,9 +8,10 @@
     align-items: center;
     gap: 5px;
     padding: 4px;
-    background: #f8f4fa;
-    border: 1px solid #eee5f5;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .analytics-period-btn {
@@ -20,7 +21,7 @@
     gap: 5px;
     border: none;
     background: transparent;
-    color: #817585;
+    color: #5B4B73;
     padding: 7px 11px;
     border-radius: 5px;
     font-size: 14px;
@@ -30,13 +31,14 @@
 }
 
 .analytics-period-btn:hover {
-    color: #6f258f;
+    color: #4C1D95;
+    background: #F5F3FF;
 }
 
 .analytics-period-btn.active {
-    background: #ffffff;
-    color: #8d2db8;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    color: #FFFFFF;
+    box-shadow: 0 6px 14px rgba(109, 40, 217, 0.28);
 }
 
 .custom-btn {
@@ -51,10 +53,10 @@
     right: 0;
     width: 310px;
     padding: 15px;
-    background: #ffffff;
-    border: 1px solid #eee5f5;
+    background: #FFFFFF;
+    border: 1px solid #E9D5FF;
     border-radius: 9px;
-    box-shadow: 0 8px 25px rgba(44, 24, 52, 0.12);
+    box-shadow: 0 24px 60px rgba(27, 16, 48, 0.28);
     z-index: 20;
 }
 
@@ -68,14 +70,14 @@
 
 .custom-range-header h3 {
     margin: 0;
-    color: #2c1b35;
+    color: #1B1030;
     font-size: 14px;
     font-weight: 600;
 }
 
 .custom-range-header p {
     margin: 4px 0 0;
-    color: #948999;
+    color: #6E5D88;
     font-size: 12px;
 }
 
@@ -87,14 +89,14 @@
     justify-content: center;
     border: none;
     border-radius: 5px;
-    color: #8d8290;
-    background: #f8f4fa;
+    color: #7B6C92;
+    background: #F5F3FF;
     cursor: pointer;
 }
 
 .custom-range-close:hover {
-    color: #6f258f;
-    background: #f1e8f5;
+    color: #4C1D95;
+    background: #EDE9FE;
 }
 
 .custom-range-fields {
@@ -110,7 +112,7 @@
 }
 
 .date-field label {
-    color: #6e6272;
+    color: #3B2854;
     font-size: 11px;
     font-weight: 600;
 }
@@ -120,17 +122,17 @@
     height: 34px;
     padding: 0 8px;
     box-sizing: border-box;
-    border: 1px solid #e7dfea;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    color: #4b3b52;
-    background: #ffffff;
+    color: #24143D;
+    background: #FFFFFF;
     font-size: 11px;
     outline: none;
 }
 
 .date-field input:focus {
-    border-color: #a34ac8;
-    box-shadow: 0 0 0 2px rgba(163, 74, 200, 0.08);
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .custom-range-actions {
@@ -151,23 +153,26 @@
 }
 
 .cancel-range-btn {
-    border: 1px solid #e7dfea;
-    color: #756978;
-    background: #ffffff;
+    border: 1px solid #DDD6FE;
+    color: #5B21B6;
+    background: #FFFFFF;
 }
 
 .cancel-range-btn:hover {
-    background: #faf7fb;
+    background: #F3E8FF;
+    border-color: #C4B5FD;
+    color: #4C1D95;
 }
 
 .apply-range-btn {
     border: none;
-    color: #ffffff;
-    background: #8d2db8;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    box-shadow: 0 6px 14px rgba(109, 40, 217, 0.28);
 }
 
 .apply-range-btn:hover {
-    background: #79239f;
+    background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
 }
 
 .apply-range-btn:disabled {

@@ -22,7 +22,7 @@ function AnalyticsChart() {
 
                 <div className="title">
 
-                    <LineChart size={18} color="#A855F7"/>
+                    <LineChart size={18} color="#6D28D9"/>
 
                     <h3>AI Services Monitoring</h3>
 
@@ -78,7 +78,7 @@ function AnalyticsChart() {
 
                         <Bar
                             dataKey="v"
-                            fill="#EC4899"
+                            fill="#7C3AED"
                             radius={[6,6,0,0]}
                         />
 

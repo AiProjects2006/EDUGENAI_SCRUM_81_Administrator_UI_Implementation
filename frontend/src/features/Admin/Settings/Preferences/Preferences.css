@@ -3,9 +3,10 @@
     min-height: 171px;
     padding: 14px;
     box-sizing: border-box;
-    background: #ffffff;
-    border: 1px solid #eee3f2;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .preferences-header {
@@ -17,7 +18,7 @@
 
 .preferences-header p {
     margin: 3px 0 0;
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 13px;
 }
 
@@ -29,13 +30,13 @@
     justify-content: center;
     flex-shrink: 0;
     border-radius: 5px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #6D28D9;
 }
 
 .preferences-header h2 {
     margin: 0;
-    color: #32163b;
+    color: #1B1030;
     font-size: 20px;
     font-weight: 700;
 }
@@ -43,7 +44,7 @@
 .preferences-label {
     display: block;
     margin-bottom: 6px;
-    color: #75677a;
+    color: #3B2854;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.2px;
@@ -55,9 +56,9 @@
     gap: 6px;
     position: relative;
     transition:
-            border-color 0.15s ease,
-            background 0.15s ease,
-            transform 0.15s ease;
+        border-color 0.15s ease,
+        background 0.15s ease,
+        transform 0.15s ease;
 }
 
 .preferences-theme-option {
@@ -67,28 +68,28 @@
     align-items: center;
     justify-content: center;
     gap: 3px;
-    border: 1px solid #eee3f2;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: #ffffff;
-    color: #67576d;
+    background: #FFFFFF;
+    color: #5B4B73;
     font-family: inherit;
     font-size: 12px;
     cursor: pointer;
 }
 
 .preferences-theme-option:hover {
-    border-color: #cba5d4;
-    background: #fdfaff;
+    border-color: #C4B5FD;
+    background: #FAF8FF;
 }
 
 .preferences-theme-option.active {
-    border-color: #72008c;
-    background: #f8eafd;
-    color: #72008c;
+    border-color: #7C3AED;
+    background: #F3E8FF;
+    color: #5B21B6;
 }
 
 .preferences-theme-option.active svg {
-    color: #72008c;
+    color: #6D28D9;
 }
 
 .preferences-theme-check {
@@ -112,8 +113,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #f4eef5;
-    color: #67576d;
+    border-bottom: 1px solid #EDE9FE;
+    color: #3B2854;
     font-size: 12px;
     cursor: pointer;
 }
@@ -123,7 +124,7 @@
 }
 
 .preferences-notification-row:hover {
-    color: #72008c;
+    color: #5B21B6;
 }
 
 .preferences-notification-row input {
@@ -139,23 +140,23 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border: 1px solid #e1d6e4;
+    border: 1px solid #DDD6FE;
     border-radius: 3px;
-    background: #ffffff;
-    color: #ffffff;
+    background: #FFFFFF;
+    color: #FFFFFF;
     transition:
-            background 0.15s ease,
-            border-color 0.15s ease;
+        background 0.15s ease,
+        border-color 0.15s ease;
 }
 
 .preferences-checkbox.checked {
-    border-color: #72008c;
-    background: #72008c;
+    border-color: #6D28D9;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
 }
 
-.preferences-notification-row input:checked + .preferences-checkbox {
-    border-color: #72008c;
-    background: #72008c;
+.preferences-notification-row input:checked+.preferences-checkbox {
+    border-color: #6D28D9;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
 }
 
 .preferences-saved {
@@ -164,13 +165,13 @@
     gap: 4px;
     height: 0;
     overflow: hidden;
-    color: #31915a;
+    color: #15803D;
     font-size: 8px;
     font-weight: 600;
     opacity: 0;
     transition:
-            height 0.2s ease,
-            opacity 0.2s ease;
+        height 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .preferences-saved.visible {

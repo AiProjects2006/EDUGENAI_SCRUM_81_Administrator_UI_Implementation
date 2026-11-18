@@ -1,63 +1,65 @@
 .recent-activity{
     flex:1;
     background:#FFFFFF;
+    border:1px solid #ECE8FF;
     border-radius:16px;
     padding:24px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    box-shadow:0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
-.activity-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .activity-header h2{
     font-size:20px;
-    color:#2D2D2D;
+    color:#1B1030;
     font-weight:700;
 }
 
 .activity-header button{
     border:none;
-    background:#7C3AED;
-    color:#fff;
+    background:linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    color:#FFFFFF;
     padding:8px 16px;
     border-radius:8px;
     cursor:pointer;
+    box-shadow:0 6px 14px rgba(109, 40, 217, 0.28);
     transition:0.3s;
 }
 
 .activity-header button:hover{
-    background:#6D28D9;
+    background:linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
 }
 
-.activity-list{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.activity-item{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:12px;
-    border-radius:12px;
-    transition:0.3s;
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    border-radius: 12px;
+    transition: 0.3s;
 }
 
 .activity-item:hover{
-    background:#F5F3FF;
+    background:#FAF8FF;
 }
 
 .activity-icon{
     width:45px;
     height:45px;
     border-radius:50%;
-    background:#EDE9FE;
-    color:#7C3AED;
+    background:#F3E8FF;
+    color:#6D28D9;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -67,11 +69,11 @@
 .activity-info h4{
     margin:0;
     font-size:15px;
-    color:#2D2D2D;
+    color:#24143D;
 }
 
 .activity-info p{
     margin-top:4px;
     font-size:13px;
-    color:#888;
+    color:#6E5D88;
 }

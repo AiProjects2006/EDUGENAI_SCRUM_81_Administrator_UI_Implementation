@@ -6,17 +6,19 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(20, 10, 30, 0.45);
+    background: rgba(27, 16, 48, 0.58);
+    backdrop-filter: blur(4px);
     overflow-y: auto;
 }
 
 .revision-modal {
     width: 100%;
     max-width: 520px;
-    background: white;
+    background: #FFFFFF;
+    border: 1px solid #E9D5FF;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 12px 35px rgba(30, 15, 40, 0.18);
+    box-shadow: 0 24px 60px rgba(27, 16, 48, 0.28);
 }
 
 .revision-modal-header {
@@ -24,7 +26,8 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 18px;
-    border-bottom: 1px solid #eee5f5;
+    background: #FAF8FF;
+    border-bottom: 1px solid #EDE9FE;
 }
 
 .revision-modal-label {
@@ -32,7 +35,7 @@
     margin-bottom: 5px;
     font-size: 8px;
     font-weight: 600;
-    color: #9a8fa1;
+    color: #6E5D88;
     text-transform: uppercase;
 }
 
@@ -40,7 +43,7 @@
     margin: 0;
     font-size: 16px;
     font-weight: 700;
-    color: #291537;
+    color: #1B1030;
 }
 
 .revision-close-btn {
@@ -49,15 +52,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
+    border: 1px solid #DDD6FE;
     border-radius: 6px;
-    background: #f6f2f8;
-    color: #6f6275;
+    background: #F5F3FF;
+    color: #5B4B73;
     cursor: pointer;
 }
 
 .revision-close-btn:hover {
-    background: #eee7f1;
+    background: #EDE9FE;
+    color: #1B1030;
 }
 
 .revision-modal-form {
@@ -74,28 +78,28 @@
     flex-direction: column;
     margin-bottom: 18px;
     padding: 12px;
-    border: 1px solid #eee5f5;
+    border: 1px solid #EDE9FE;
     border-radius: 7px;
-    background: #faf8fc;
+    background: #FAF8FF;
 }
 
 .revision-content-info span {
     margin-bottom: 5px;
     font-size: 8px;
     font-weight: 600;
-    color: #9a8fa1;
+    color: #7B6C92;
     text-transform: uppercase;
 }
 
 .revision-content-info strong {
     font-size: 11px;
-    color: #392946;
+    color: #1B1030;
 }
 
 .revision-content-info small {
     margin-top: 4px;
     font-size: 9px;
-    color: #968a9c;
+    color: #6E5D88;
 }
 
 .revision-note-group label {
@@ -103,7 +107,7 @@
     margin-bottom: 6px;
     font-size: 8px;
     font-weight: 600;
-    color: #8b8091;
+    color: #5B4B73;
     text-transform: uppercase;
 }
 
@@ -112,19 +116,20 @@
     min-height: 120px;
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid #e3dce8;
+    border: 1px solid #DDD6FE;
     border-radius: 6px;
-    background: white;
+    background: #FFFFFF;
     font-family: inherit;
     font-size: 11px;
     line-height: 1.5;
-    color: #403448;
+    color: #24143D;
     resize: vertical;
     outline: none;
 }
 
 .revision-note-group textarea:focus {
-    border-color: #8b35d6;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .revision-modal-footer {
@@ -133,8 +138,8 @@
     justify-content: flex-end;
     gap: 8px;
     padding: 14px 18px;
-    border-top: 1px solid #eee5f5;
-    background: #fcfbfd;
+    border-top: 1px solid #EDE9FE;
+    background: #FAF8FF;
 }
 
 .revision-cancel-btn,
@@ -153,21 +158,24 @@
 }
 
 .revision-cancel-btn {
-    background: #f1edf3;
-    color: #625569;
+    background: #FFFFFF;
+    border: 1px solid #DDD6FE;
+    color: #5B21B6;
 }
 
 .revision-cancel-btn:hover {
-    background: #e8e2eb;
+    background: #F3E8FF;
+    border-color: #C4B5FD;
 }
 
 .revision-submit-btn {
-    background: #eee9ff;
-    color: #6355c7;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    color: #FFFFFF;
+    box-shadow: 0 6px 14px rgba(109, 40, 217, 0.28);
 }
 
 .revision-submit-btn:hover:not(:disabled) {
-    background: #e3ddfb;
+    background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
 }
 
 .revision-submit-btn:disabled {

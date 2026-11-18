@@ -322,7 +322,7 @@ export default function CreatorManagement() {
                         <tbody>
                             {filteredCreators.length === 0 ? (
                                 <tr>
-                                    <td colSpan="7" style={{ textAlign: "center", padding: "40px", color: "#8b7fa8" }}>
+                                    <td colSpan="7" style={{ textAlign: "center", padding: "40px", color: "#6E5D88" }}>
                                         No content creators found matching current filter.
                                     </td>
                                 </tr>
@@ -375,7 +375,7 @@ export default function CreatorManagement() {
                                                             <span key={idx} className="subject-tag">{s}</span>
                                                         ))
                                                     ) : (
-                                                        <span style={{ fontSize: "12px", color: "#9ca3af" }}>General STEM</span>
+                                                        <span style={{ fontSize: "12px", color: "#7B6C92" }}>General STEM</span>
                                                     )}
                                                     {subjectsList.length > 2 && (
                                                         <span className="subject-tag">+{subjectsList.length - 2}</span>
@@ -401,7 +401,7 @@ export default function CreatorManagement() {
                                                 )}
                                             </td>
 
-                                            <td style={{ fontSize: "13px", color: "#6b7280" }}>
+                                            <td style={{ fontSize: "13px", color: "#5B4B73" }}>
                                                 {creator.createdAt
                                                     ? new Date(creator.createdAt).toLocaleDateString()
                                                     : "Recent"}
@@ -498,12 +498,12 @@ export default function CreatorManagement() {
 
                             {selectedCreator.skills && (
                                 <div style={{ marginBottom: "20px" }}>
-                                    <h5 style={{ margin: "0 0 8px 0", fontSize: "12px", textTransform: "uppercase", color: "#8b7fa8" }}>
+                                    <h5 style={{ margin: "0 0 8px 0", fontSize: "12px", textTransform: "uppercase", color: "#6E5D88" }}>
                                         Key Skills & Specializations
                                     </h5>
                                     <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                                         {selectedCreator.skills.split(",").map((sk, i) => (
-                                            <span key={i} className="subject-tag" style={{ background: "#f3eeff", padding: "4px 10px", fontSize: "12px" }}>
+                                            <span key={i} className="subject-tag" style={{ background: "#F3E8FF", padding: "4px 10px", fontSize: "12px" }}>
                                                 {sk.trim()}
                                             </span>
                                         ))}
@@ -513,7 +513,7 @@ export default function CreatorManagement() {
 
                             {selectedCreator.portfolioUrl && (
                                 <div style={{ marginBottom: "20px" }}>
-                                    <h5 style={{ margin: "0 0 8px 0", fontSize: "12px", textTransform: "uppercase", color: "#8b7fa8" }}>
+                                    <h5 style={{ margin: "0 0 8px 0", fontSize: "12px", textTransform: "uppercase", color: "#6E5D88" }}>
                                         Portfolio & Sample Lessons
                                     </h5>
                                     <a
@@ -531,7 +531,7 @@ export default function CreatorManagement() {
 
                             {selectedCreator.bio && (
                                 <div>
-                                    <h5 style={{ margin: "0 0 8px 0", fontSize: "12px", textTransform: "uppercase", color: "#8b7fa8" }}>
+                                    <h5 style={{ margin: "0 0 8px 0", fontSize: "12px", textTransform: "uppercase", color: "#6E5D88" }}>
                                         Statement of Purpose / Educator Bio
                                     </h5>
                                     <div className="bio-quote-box">

@@ -1,6 +1,10 @@
 .dashboard-page{
     padding:30px;
-    background:#f4f0fb;
+    background-color:#F8F6FF;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(109, 40, 217, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.08) 0px, transparent 50%);
+    color:#24143D;
     min-height:100vh;
 }
 
@@ -8,11 +12,11 @@
     margin:0;
     font-size:30px;
     font-weight:700;
-    color:#24143d;
+    color:#1B1030;
 }
 
 .dashboard-subtitle{
-    color:#7b6c92;
+    color:#6E5D88;
     margin-top:6px;
     margin-bottom:25px;
 }

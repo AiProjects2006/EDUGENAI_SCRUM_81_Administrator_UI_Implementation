@@ -1,10 +1,11 @@
 .system-health-card {
     width: 100%;
     padding: 14px;
-    background: #ffffff;
-    border: 1px solid #eee3f2;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
     box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .system-health-header {
@@ -17,7 +18,7 @@
 
 .system-health-header h2 {
     margin: 0;
-    color: #32163b;
+    color: #1B1030;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.8;
@@ -25,7 +26,7 @@
 
 .system-health-header p {
     margin: 4px 0 0;
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 13px;
     line-height: 1.35;
 }
@@ -36,8 +37,8 @@
     gap: 4px;
     padding: 4px 6px;
     border-radius: 4px;
-    background: #f0faf3;
-    color: #31915a;
+    background: #DCFCE7;
+    color: #15803D;
     font-size: 11px;
     font-weight: 550;
     white-space: nowrap;
@@ -47,7 +48,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #38a866;
+    background: #15803D;
 }
 
 .system-health-list {
@@ -61,7 +62,7 @@
     gap: 8px;
     min-height: 50px;
     padding: 8px 0;
-    border-top: 1px solid #f0e9f3;
+    border-top: 1px solid #EDE9FE;
     box-sizing: border-box;
 }
 
@@ -82,8 +83,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #6D28D9;
 }
 
 .system-health-info {
@@ -95,14 +96,14 @@
 }
 
 .system-health-info strong {
-    color: #403343;
+    color: #1B1030;
     font-size: 14px;
     font-weight: 550;
     line-height: 1.2;
 }
 
 .system-health-info span {
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 12px;
     line-height: 1.25;
 }
@@ -112,7 +113,7 @@
     align-items: center;
     gap: 3px;
     flex-shrink: 0;
-    color: #32915a;
+    color: #15803D;
     font-size: 13px;
     font-weight: 500;
 }

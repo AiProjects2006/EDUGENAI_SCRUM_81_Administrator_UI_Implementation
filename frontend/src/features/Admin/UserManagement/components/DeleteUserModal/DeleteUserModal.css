@@ -2,41 +2,49 @@
 .delete-modal-overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.45);
+    background:rgba(27, 16, 48, 0.58);
+    backdrop-filter:blur(4px);
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:2000;
 
-    animation:overlayFade .25s ease;
+    animation: overlayFade .25s ease;
 }
 
 /* Modal */
 .delete-modal{
     width:420px;
-    background:#fff;
+    background:#FFFFFF;
+    border:1px solid #E9D5FF;
     border-radius:18px;
     padding:30px;
     text-align:center;
     position:relative;
-    box-shadow:0 20px 60px rgba(0,0,0,.15);
+    box-shadow:0 24px 60px rgba(27, 16, 48, 0.28);
 
-    animation:modalScale .25s ease;
+    animation: modalScale .25s ease;
 }
 
-@keyframes overlayFade{
-    from{ opacity:0; }
-    to{ opacity:1; }
-}
-
-@keyframes modalScale{
-    from{
-        opacity:0;
-        transform:scale(.9) translateY(10px);
+@keyframes overlayFade {
+    from {
+        opacity: 0;
     }
-    to{
-        opacity:1;
-        transform:scale(1) translateY(0);
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalScale {
+    from {
+        opacity: 0;
+        transform: scale(.9) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
@@ -47,15 +55,20 @@
     border:none;
     background:none;
     cursor:pointer;
-    color:#888;
+    color:#7B6C92;
+}
+
+.delete-close:hover{
+    color:#24143D;
 }
 
 .delete-icon{
     width:80px;
     height:80px;
     border-radius:50%;
-    background:#fde8e8;
-    color:#e53935;
+    background:#FEF2F2;
+    border:1px solid #FECACA;
+    color:#DC2626;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -65,32 +78,32 @@
 
 .delete-modal h2{
     margin:0;
-    color:#2b1746;
+    color:#1B1030;
     font-size:24px;
 }
 
 .delete-modal p{
     margin:18px 0 10px;
-    color:#666;
+    color:#5B4B73;
     font-size:16px;
 }
 
 .delete-warning{
-    color:#999;
+    color:#6E5D88;
     font-size:14px;
 }
 
-.delete-buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:30px;
+.delete-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
 }
 
 .cancel-delete{
-    border:none;
-    background:#ece8f8;
-    color:#5b3cc4;
+    border:1px solid #DDD6FE;
+    background:#FFFFFF;
+    color:#5B21B6;
     padding:12px 24px;
     border-radius:10px;
     cursor:pointer;
@@ -99,8 +112,8 @@
 
 .confirm-delete{
     border:none;
-    background:#e53935;
-    color:white;
+    background:#DC2626;
+    color:#FFFFFF;
     padding:12px 24px;
     border-radius:10px;
     cursor:pointer;
@@ -108,11 +121,12 @@
 }
 
 .confirm-delete:hover{
-    background:#d32f2f;
+    background:#B91C1C;
 }
 
 
 
 .cancel-delete:hover{
-    background:#ddd6fe;
+    background:#F3E8FF;
+    border-color:#C4B5FD;
 }

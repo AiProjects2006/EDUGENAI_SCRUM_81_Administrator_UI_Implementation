@@ -3,9 +3,10 @@
     min-height: 215px;
     padding: 14px;
     box-sizing: border-box;
-    background: #ffffff;
-    border: 1px solid #eee3f2;
+    background: #FFFFFF;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
+    box-shadow: 0 4px 14px rgba(88, 28, 135, 0.06);
 }
 
 .language-localization-header {
@@ -22,13 +23,13 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #6D28D9;
 }
 
 .language-localization-header h2 {
     margin: 0;
-    color: #32163b;
+    color: #1B1030;
     font-size: 20px;
     line-height: 1.2;
     font-weight: 700;
@@ -36,7 +37,7 @@
 
 .language-localization-header p {
     margin: 3px 0 0;
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 14px;
     line-height: 1.35;
 }
@@ -45,8 +46,9 @@
     margin-left: auto;
     padding: 4px 7px;
     border-radius: 4px;
-    background: #f5eafa;
-    color: #72008c;
+    background: #F3E8FF;
+    color: #5B21B6;
+    border: 1px solid #E9D5FF;
     font-size: 11px;
     white-space: nowrap;
 }
@@ -61,7 +63,7 @@
 .language-field-label {
     display: block;
     margin-bottom: 6px;
-    color: #75677a;
+    color: #3B2854;
     font-size: 16px;
     font-weight: 550;
     letter-spacing: 0.2px;
@@ -79,19 +81,19 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    border: 1px solid #f0e6f3;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: #ffffff;
-    color: #403343;
+    background: #FFFFFF;
+    color: #3B2854;
     font-family: inherit;
     font-size: 15px;
     cursor: pointer;
 }
 
 .language-option.active {
-    border-color: #72008c;
-    background: #f8eafd;
-    color: #72008c;
+    border-color: #7C3AED;
+    background: #F3E8FF;
+    color: #5B21B6;
     font-weight: 500;
 }
 
@@ -103,10 +105,10 @@
     justify-content: space-between;
     margin-top: 7px;
     padding: 0 9px;
-    border: 1px solid #eee3f2;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: #faf7fb;
-    color: #67576d;
+    background: #FAF8FF;
+    color: #5B4B73;
     font-family: inherit;
     font-size: 15px;
     cursor: pointer;
@@ -116,13 +118,14 @@
     padding: 12px;
     box-sizing: border-box;
     border-radius: 6px;
-    background: #efd6fb;
+    background: #F5F3FF;
+    border: 1px solid #EDE9FE;
 }
 
 .language-preview-label {
     display: block;
     margin-bottom: 7px;
-    color: #72008c;
+    color: #5B21B6;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.25px;
@@ -136,8 +139,8 @@
     margin-bottom: 6px;
     padding: 0 7px;
     border-radius: 4px;
-    background: #ffffff;
-    color: #403343;
+    background: #FFFFFF;
+    color: #24143D;
     font-size: 10px;
 }
 
@@ -147,7 +150,7 @@
     justify-content: space-between;
     gap: 8px;
     margin-top: 7px;
-    color: #67576d;
+    color: #5B4B73;
     font-size: 10px;
 }
 
@@ -158,7 +161,7 @@
     padding: 0;
     border: none;
     border-radius: 20px;
-    background: #ddd2e1;
+    background: #DDD6FE;
     cursor: pointer;
 }
 
@@ -169,8 +172,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 1px 2px rgba(40, 15, 48, 0.18);
+    background: #FFFFFF;
+    box-shadow: 0 1px 2px rgba(27, 16, 48, 0.2);
     transition: transform 0.2s ease;
 }
 
@@ -181,7 +184,7 @@
 .language-region-field label {
     display: block;
     margin-bottom: 5px;
-    color: #75677a;
+    color: #3B2854;
     font-size: 16px;
     font-weight: 550;
     letter-spacing: 0.2px;
@@ -191,19 +194,19 @@
     width: 100%;
     height: 38px;
     padding: 0 8px;
-    border: 1px solid #eee3f2;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
     outline: none;
-    background: #ffffff;
-    color: #403343;
+    background: #FFFFFF;
+    color: #24143D;
     font-family: inherit;
     font-size: 16px;
     cursor: pointer;
 }
 
 .language-region-field select:focus {
-    border-color: #b77bc5;
-    box-shadow: 0 0 0 2px rgba(114, 0, 140, 0.06);
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .language-saved {
@@ -213,13 +216,13 @@
     height: 0;
     margin-top: 0;
     overflow: hidden;
-    color: #31915a;
+    color: #15803D;
     font-size: 13px;
     font-weight: 500;
     opacity: 0;
     transition:
-            height 0.2s ease,
-            opacity 0.2s ease;
+        height 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .language-saved.visible {
@@ -237,17 +240,18 @@
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
-    background: rgba(31, 14, 38, 0.42);
+    background: rgba(27, 16, 48, 0.58);
+    backdrop-filter: blur(4px);
 }
 
 .language-modal {
     width: min(390px, 100%);
     padding: 16px;
     box-sizing: border-box;
-    border: 1px solid #eee3f2;
+    border: 1px solid #E9D5FF;
     border-radius: 8px;
-    background: #ffffff;
-    box-shadow: 0 14px 40px rgba(48, 20, 56, 0.16);
+    background: #FFFFFF;
+    box-shadow: 0 24px 60px rgba(27, 16, 48, 0.28);
 }
 
 .language-modal-header {
@@ -262,18 +266,18 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #32163b;
+    color: #1B1030;
     font-size: 20px;
     font-weight: 700;
 }
 
 .language-modal-title svg {
-    color: #72008c;
+    color: #6D28D9;
 }
 
 .language-modal-header p {
     margin: 4px 0 0;
-    color: #9a8da0;
+    color: #6E5D88;
     font-size: 14px;
 }
 
@@ -283,16 +287,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #eee3f2;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: #ffffff;
-    color: #67576d;
+    background: #F5F3FF;
+    color: #5B4B73;
     cursor: pointer;
 }
 
 .language-modal-close:hover {
-    background: #faf7fb;
-    color: #72008c;
+    background: #EDE9FE;
+    color: #4C1D95;
 }
 
 .language-modal-options {
@@ -308,29 +312,29 @@
     justify-content: space-between;
     gap: 8px;
     padding: 0 9px;
-    border: 1px solid #eee3f2;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: #ffffff;
-    color: #403343;
+    background: #FFFFFF;
+    color: #3B2854;
     font-family: inherit;
     font-size: 15px;
     cursor: pointer;
 }
 
 .language-modal-option:hover {
-    border-color: #cba5d4;
-    background: #fdfaff;
+    border-color: #C4B5FD;
+    background: #FAF8FF;
 }
 
 .language-modal-option.active {
-    border-color: #72008c;
-    background: #f8eafd;
-    color: #72008c;
+    border-color: #7C3AED;
+    background: #F3E8FF;
+    color: #5B21B6;
     font-weight: 500;
 }
 
 .language-toggle.active {
-    background: #72008c;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
 }
 
 .language-toggle.active span {

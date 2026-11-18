@@ -5,7 +5,7 @@
     overflow-x: auto;
     overflow-y: auto;
     overflow-x: auto;
-    border: 1px solid #eee5f5;
+    border: 1px solid #ECE8FF;
     border-radius: 7px;
 }
 
@@ -18,20 +18,20 @@
 .moderation-table th {
     padding: 15px 12px;
     text-align: left;
-    background: #faf8fc;
-    border-bottom: 1px solid #eee5f5;
+    background: #FAF8FF;
+    border-bottom: 1px solid #EDE9FE;
     font-size: 13px;
     font-weight: 600;
-    color: #8b8091;
+    color: #6E5D88;
     text-transform: uppercase;
     white-space: nowrap;
 }
 
 .moderation-table td {
     padding: 15px 12px;
-    border-bottom: 1px solid #f0ebf3;
+    border-bottom: 1px solid #EDE9FE;
     font-size: 13px;
-    color: #514657;
+    color: #24143D;
     vertical-align: middle;
 }
 
@@ -41,23 +41,23 @@
 }
 
 .moderation-table tbody tr:hover {
-    background: #faf7fc;
+    background: #FAF8FF;
 }
 
 .moderation-table tbody tr.selected-row {
-    background: #f8f0fc;
+    background: #F5F3FF;
 }
 
 .content-title {
     font-size: 13px;
     font-weight: 600;
-    color: #2b1938;
+    color: #1B1030;
     margin-bottom: 4px;
 }
 
 .content-id {
     font-size: 12px;
-    color: #9a8fa1;
+    color: #7B6C92;
 }
 
 .content-type {
@@ -71,13 +71,14 @@
 }
 
 .content-type.ai-type {
-    background: #eee9ff;
-    color: #6355c7;
+    background: #F3E8FF;
+    color: #5B21B6;
 }
 
 .content-type.uploaded-type {
-    background: #eaf5ff;
-    color: #3975aa;
+    background: #F5F3FF;
+    color: #4C1D95;
+    border: 1px solid #E9D5FF;
 }
 
 .moderation-status {
@@ -90,18 +91,18 @@
 }
 
 .moderation-status.pending {
-    background: #fff4dc;
-    color: #b77900;
+    background: #FEF3C7;
+    color: #B45309;
 }
 
 .moderation-status.approved {
-    background: #e7f8ee;
-    color: #24935b;
+    background: #DCFCE7;
+    color: #15803D;
 }
 
 .moderation-status.rejected {
-    background: #fcecef;
-    color: #c93669;
+    background: #FEF2F2;
+    color: #DC2626;
 }
 
 .view-content-btn {
@@ -110,20 +111,21 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #e4dce9;
+    border: 1px solid #DDD6FE;
     border-radius: 5px;
-    background: white;
-    color: #6f527d;
+    background: #FFFFFF;
+    color: #5B21B6;
     cursor: pointer;
 }
 
 .view-content-btn:hover {
-    background: #f4ebf8;
-    color: #7b159f;
+    background: #F3E8FF;
+    border-color: #C4B5FD;
+    color: #4C1D95;
 }
 
 .no-content {
     padding: 30px !important;
     text-align: center;
-    color: #968a9c !important;
+    color: #7B6C92 !important;
 }

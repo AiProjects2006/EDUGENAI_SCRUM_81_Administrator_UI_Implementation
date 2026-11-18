@@ -2,6 +2,11 @@
     width: 100%;
     padding: 24px;
     box-sizing: border-box;
+    background-color: #F8F6FF;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(109, 40, 217, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.08) 0px, transparent 50%);
+    color: #24143D;
 }
 
 .analytics-header {
@@ -14,7 +19,7 @@
 
 .analytics-header-text h1 {
     margin: 0;
-    color: #211033;
+    color: #1B1030;
     font-size: 34px;
     font-weight: 700;
     line-height: 1.2;
@@ -22,7 +27,7 @@
 
 .analytics-header-text p {
     margin: 7px 0 0;
-    color: #8b818f;
+    color: #6E5D88;
     font-size: 16px;
     line-height: 1.5;
 }

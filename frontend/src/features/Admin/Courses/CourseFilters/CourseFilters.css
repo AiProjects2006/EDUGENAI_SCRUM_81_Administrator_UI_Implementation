@@ -14,16 +14,16 @@
     align-items: center;
     gap: 8px;
     padding: 0 12px;
-    background: #ffffff;
-    border: 1px solid #e2dce6;
+    background: #FFFFFF;
+    border: 1px solid #DDD6FE;
     border-radius: 8px;
     box-sizing: border-box;
-    color: #81758a;
+    color: #7B6C92;
 }
 
 .search-box:focus-within {
-    border-color: #8b35d6;
-    box-shadow: 0 0 0 2px rgba(139, 53, 214, 0.08);
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .search-box svg {
@@ -36,23 +36,23 @@
     border: none;
     outline: none;
     background: transparent;
-    color: #403647;
+    color: #24143D;
     font-size: 13px;
     font-family: inherit;
 }
 
 .search-box input::placeholder {
-    color: #938898;
+    color: #7B6C92;
 }
 
 .course-filters select {
     height: 40px;
     min-width: 125px;
     padding: 0 32px 0 12px;
-    border: 1px solid #e2dce6;
+    border: 1px solid #DDD6FE;
     border-radius: 8px;
-    background: #ffffff;
-    color: #4b3d52;
+    background: #FFFFFF;
+    color: #24143D;
     font-size: 13px;
     font-family: inherit;
     outline: none;
@@ -60,8 +60,8 @@
 }
 
 .course-filters select:focus {
-    border-color: #8b35d6;
-    box-shadow: 0 0 0 2px rgba(139, 53, 214, 0.08);
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.14);
 }
 
 .reset-filter-btn {
@@ -73,22 +73,23 @@
     gap: 6px;
     border: none;
     border-radius: 8px;
-    background: #8132d9;
-    color: #ffffff;
+    background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
+    color: #FFFFFF;
     font-size: 13px;
     font-family: inherit;
     font-weight: 500;
     cursor: pointer;
     white-space: nowrap;
+    box-shadow: 0 6px 14px rgba(109, 40, 217, 0.28);
     transition: background 0.2s ease;
 }
 
 .reset-filter-btn:hover {
-    background: #7025c4;
+    background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
 }
 
 .reset-filter-btn:active {
-    background: #641faf;
+    background: linear-gradient(135deg, #4C1D95 0%, #5B21B6 100%);
 }
 
 @media (max-width: 1000px) {
